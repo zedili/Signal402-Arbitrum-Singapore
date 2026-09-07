@@ -8,6 +8,8 @@ qualifying implementation commits inside the official window. Maintain the
 commit-linked evidence ledger in `docs/progress-during-buildathon.md`.
 Use `docs/implementation-map.md` for the file boundaries, ordered commit slices,
 test layout, and stop points; it refines execution without changing this scope.
+Use `docs/delivery-risk-register.md` for internal control dates, approval lead
+times, fallback behavior, and daily exit conditions.
 
 Because the Terms do not provide a precise start time while HackQuest displays
 Sep 14 at 01:01 in UTC+8, follow `docs/sep14-kickoff-runbook.md`: do not begin

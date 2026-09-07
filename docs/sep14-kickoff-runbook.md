@@ -123,6 +123,8 @@ Use this order:
 Execute the feature work as independently testable slices using
 `docs/implementation-map.md`. If observed in-window behavior contradicts a
 planned boundary, record the evidence and revise the map before continuing.
+Track daily exit conditions and escalation dates in
+`docs/delivery-risk-register.md`; calendar progress is not completion evidence.
 
 Local implementation and tests inside the verified window are authorized by
 the participation objective. The following still require separate approval:

@@ -86,6 +86,9 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
 - [ ] Reconcile completed feature commits and tests against every applicable
   slice in `docs/implementation-map.md`; explain deliberate deviations and
   preserve the final pre-event HEAD plus tag-to-final diff.
+- [ ] Close or explicitly disclose every completion-critical item and triggered
+  risk in `docs/delivery-risk-register.md`; no safe-default placeholder may be
+  presented as production evidence.
 - [ ] Replace all pre-event draft markers and split baseline accomplishments from verified in-window accomplishments across README, submission copy, judge Q&A, deck, videos, and HackQuest fields.
 - [ ] Generate and review `evidence/buildathon/claim-ledger.json` against
   `docs/judging-readiness.md`; every factual final claim must be
