@@ -99,6 +99,17 @@ purchase with confirmation. The current baseline returns free-form error text,
 so this remains planned until the in-window endpoint, fixtures, and public
 problem documentation are deployed and tested.
 
+### Does the reference agent pay automatically?
+
+No. The planned reference CLI is inspect-only by default: it validates and
+prints the 402 terms without constructing a signer. A purchase requires an
+explicit one-time authorization, an exact local allowlist for the production
+route, Arbitrum Sepolia, test USDC, 0.01 USDC, and the recipient. Once signed,
+bounded network retries reuse the exact same authorization and idempotency key;
+an ambiguous outcome stops for reconciliation instead of requesting a new
+signature. This remains a pre-event design until the in-window client and its
+signer-count/replay tests are complete.
+
 ### Is the registry part of the payment path?
 
 No. `Signal402Registry` is a deliberately small, optional hash-attestation

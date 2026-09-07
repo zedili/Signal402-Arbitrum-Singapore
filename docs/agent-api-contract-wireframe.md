@@ -276,6 +276,10 @@ authoritative evidence resolves the state.
 
 ## Reference-client validation order
 
+The full client state machine, frozen payment policy, signer boundary, retry
+rules, exit codes, and evidence gates are defined in
+`docs/reference-client-wireframe.md`.
+
 1. Validate HTTP status and media type.
 2. On `402`, decode `PAYMENT-REQUIRED`, compare every term to local policy, and
    ask for explicit wallet authorization.

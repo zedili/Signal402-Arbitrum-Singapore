@@ -54,6 +54,8 @@ cannot prove the transaction and recreate the standard receipt, expose an
 The client creates one high-entropy `Idempotency-Key` before the initial unpaid
 request and reuses it for every transport attempt belonging to that logical
 purchase. It must not silently generate a new key after a paid attempt.
+The judge-facing client implementation and its one-signature retry invariant
+are specified in `docs/reference-client-wireframe.md`.
 
 The server derives, rather than trusts, a request fingerprint:
 

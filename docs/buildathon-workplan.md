@@ -165,7 +165,8 @@ machine client, and creates measurable reliability evidence.
    presenting cleanup as the substantive feature.
 2. **Sep 14–18:** implement the versioned API and canonical proof bundle.
 3. **Sep 19–22:** integrate optional registry attestation and the reference
-   client.
+   client defined in `docs/reference-client-wireframe.md`, including its
+   inspect-only default and one-authorization retry invariant.
 4. **Sep 23–25:** implement the evaluation harness and failure-path coverage.
 5. **Sep 23–25:** create and integrate the provenance-clean visual refresh.
    Resolve the `typeit`, GSAP, platform-specific Sharp, and third-party-notice

@@ -39,6 +39,12 @@ verification.
 
 ## Harness layers
 
+Reference-client safety cases use the state machine and stable exit codes in
+`docs/reference-client-wireframe.md`. In particular, the harness must count
+signer invocations and compare captured request bytes, idempotency keys, and
+credential digests across simulated retries without persisting raw payment
+headers.
+
 ### 1. Deterministic contract suite
 
 Use synthetic, provenance-clean inputs and local fakes only. Cover:

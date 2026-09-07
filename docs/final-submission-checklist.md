@@ -43,6 +43,10 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
   code check, simulation, zero-value owner-approved write, pending recovery,
   strict event/ID/mapping verification, and honest hash-commitment claims; no
   automatic duplicate transaction.
+- [ ] Implement and prove `docs/reference-client-wireframe.md`: inspect-only
+  default with zero signer calls, exact payment-policy validation, one explicit
+  authorization reused across bounded retries, redacted recovery behavior, and
+  independent report/receipt/proof verification.
 
 ## Judge materials
 
