@@ -89,6 +89,16 @@ fingerprint, serializes provider and settlement work, and refuses to request a
 fresh authorization after an ambiguous result. Replace this answer with test
 and deployment evidence before claiming the design is complete.
 
+### How does an agent know whether to retry?
+
+The planned versioned API uses RFC 9457 Problem Details plus stable `code`,
+`action`, and `paymentState` fields. Those fields distinguish correcting an
+unpaid request, retrying the same unchanged authorization, waiting for the same
+purchase, checking an unknown settlement, and deliberately starting a new
+purchase with confirmation. The current baseline returns free-form error text,
+so this remains planned until the in-window endpoint, fixtures, and public
+problem documentation are deployed and tested.
+
 ### Is the registry part of the payment path?
 
 No. `Signal402Registry` is a deliberately small, optional hash-attestation

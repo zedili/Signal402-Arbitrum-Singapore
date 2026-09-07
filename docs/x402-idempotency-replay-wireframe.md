@@ -120,7 +120,8 @@ Atomic rules:
    typed conflict and never reaches provider work or settlement. This prevents
    a fresh authorization from being consumed for an existing logical purchase.
 3. The same tuple while `verifying`, `processing`, `prepared`, or `settling`
-   receives a typed `425`/retry-later response. It does not start parallel work.
+   receives a typed `409` response with a bounded retry instruction. It does
+   not start parallel work.
 4. `prepared` stores the exact body bytes and their digest before settlement;
    only `settled` may replay them to the caller.
 5. A matching `settled` replay returns the stored exact body bytes and stored

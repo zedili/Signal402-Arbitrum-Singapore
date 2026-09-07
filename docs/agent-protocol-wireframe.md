@@ -66,8 +66,9 @@ server-generated envelope. See `docs/x402-response-boundary.md`.
 ## Planned response boundary
 
 The final response should group the following concepts under an explicit schema
-version. Exact names and serialization rules are implementation decisions for
-the official window.
+version. The pre-event candidate names, strict serialization rules, and typed
+problem contract are defined in `docs/agent-api-contract-wireframe.md`; they
+must be validated before implementation is claimed.
 
 | Group | Required meaning | Claim boundary |
 | --- | --- | --- |
@@ -106,8 +107,10 @@ the official window.
   `docs/x402-idempotency-replay-wireframe.md`. Keep the distinction between
   EIP-3009 nonce replay protection, application idempotency, and the
   settlement-to-store recovery gap explicit.
-- Define typed failures for market refresh, provider output, parsing, schema
-  validation, verification, settlement, and optional attestation.
+- Validate and implement the RFC 9457 problem types, stable machine actions,
+  and payment states in `docs/agent-api-contract-wireframe.md` for market
+  refresh, provider output, parsing, schema validation, verification,
+  settlement, replay, and optional attestation boundaries.
 - Keep authoritative settlement fields in `PAYMENT-RESPONSE`; define the exact
   non-authoritative payment context allowed in the JSON body and ensure the
   bytes passed into settlement are the bytes ultimately delivered.

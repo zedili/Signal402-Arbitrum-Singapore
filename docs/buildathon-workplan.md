@@ -34,6 +34,10 @@ machine client, and creates measurable reliability evidence.
 ### 1. Versioned agent API
 
 - Add a documented versioned endpoint for purchasing a report by market ID.
+- Implement the strict request, success, RFC 9457 problem, action, and
+  payment-state contract in `docs/agent-api-contract-wireframe.md`. Make the
+  versioned route the sole paid settlement surface rather than maintaining two
+  divergent payment implementations.
 - Return the standard x402 v2 payment requirement to an unpaid client.
 - Preserve the existing rule that provider or schema failure cancels settlement.
 - Add durable application idempotency for paid retries. Bind a client purchase
@@ -81,6 +85,9 @@ machine client, and creates measurable reliability evidence.
   a bounded test fixture set.
 - Prove settlement is not called when market refresh, provider output, parsing,
   or schema validation fails.
+- Prove every typed problem maps to the documented HTTP status, machine action,
+  payment state, media type, and settlement behavior without leaking raw
+  provider/facilitator details.
 - Prove the response bytes supplied to settlement are the same bytes delivered
   to the caller, and reject a missing, malformed, failed, or network-mismatched
   `PAYMENT-RESPONSE` header in the reference client.
