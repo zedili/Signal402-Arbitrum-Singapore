@@ -7,6 +7,12 @@ record the final docs-only pre-event `main` commit at kickoff, then keep all
 qualifying implementation commits inside the official window. Maintain the
 commit-linked evidence ledger in `docs/progress-during-buildathon.md`.
 
+At kickoff, continue from the then-current `main`. Do not reset or branch from
+the baseline tag: the commits after the tag are pre-event documentation and
+evidence controls that must remain in history. Qualification is proven by the
+tag-to-final product diff plus the separately recorded final pre-event `main`
+commit.
+
 ## Objective
 
 Turn the existing human-facing paid report flow into a verifiable,

@@ -74,13 +74,22 @@ not the moving `main` branch, as the before/after comparison point.
 
 After Sep 14, 2026:
 
-1. Start all implementation from the standalone Sep 7 baseline tag.
-2. Keep qualifying code, test, deployment, and evidence commits inside the
+1. Continue implementation from the then-current `main`; do not reset, rebase,
+   or create the working branch directly from the Sep 7 tag, because later
+   pre-event commits contain documentation and evidence controls that must be
+   preserved.
+2. Record the final pre-event `main` commit before the first implementation
+   change. Treat commits between the immutable tag and that kickoff commit as
+   pre-event documentation only, not qualifying Buildathon work.
+3. Use the standalone Sep 7 tag as the immutable product comparison point for
+   judging and the final before/after diff.
+4. Keep qualifying code, test, deployment, and evidence commits inside the
    official window.
-3. Maintain `docs/progress-during-buildathon.md` as a commit-linked changelog.
-4. Record production deployment identifiers and transaction receipts.
-5. Compare changed source and behavior against this tag.
-6. Update HackQuest's Progress During Hackathon field with only the verified
+5. Maintain `docs/progress-during-buildathon.md` as a commit-linked changelog.
+6. Record production deployment identifiers and transaction receipts.
+7. Compare changed source and behavior against this tag, while separately
+   identifying the final pre-event docs-only `main` commit.
+8. Update HackQuest's Progress During Hackathon field with only the verified
    post-baseline work.
 
 The final submission should link this baseline and the post-event head so a
