@@ -149,6 +149,9 @@ claim about a real market or completed Buildathon response.
   Monetary values from the market source are non-negative canonical decimal
   strings; token amount is an atomic-unit integer string.
 - `source.market.id` equals normalized `request.marketId`.
+- The v1 endpoint accepts only positive market identifiers, so normalized `0`
+  is rejected even though the generic canonicalization grammar can represent
+  it.
 - Outcome order is source-semantic and therefore hash-significant. The endpoint
   must not silently assume binary Yes/No markets if the source does not prove
   that shape.
@@ -247,6 +250,7 @@ stable, and testable:
 | `invalid_json` | 400 | `not_present` | `fix_request_without_payment` | Must occur before verification |
 | `invalid_market_id` | 422 | `not_present` | `fix_request_without_payment` | Must occur before verification |
 | `market_not_found` | 404 | `not_present` or `verified_unsettled` | `stop` | Never settle |
+| `unsupported_market_shape` | 422 | `not_present` or `verified_unsettled` | `stop` | Never silently coerce an unsupported outcome set; never settle |
 | `payment_required` | 402 | `not_present` | `present_payment_terms` | No authorization exists |
 | `payment_authorization_invalid` | 402 | `unverified` | `start_new_purchase_with_confirmation` | Invalid authorization must not settle |
 | `idempotency_conflict` | 409 | `unverified` or `verified_unsettled` | `stop` | Mismatched tuple must not reach provider/settlement |
@@ -300,6 +304,8 @@ authoritative evidence resolves the state.
 ## In-window acceptance evidence
 
 - strict request and response validators shared by server and reference client;
+- explicit rejection coverage for missing, inconsistent, or unsupported market
+  outcome shapes rather than silently inventing a binary market;
 - golden success, 402, and every problem-code fixture with no secrets;
 - contract tests for HTTP status/body `status` agreement, media type,
   `Retry-After`, action, and payment-state mapping;

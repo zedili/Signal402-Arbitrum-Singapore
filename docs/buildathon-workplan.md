@@ -81,6 +81,8 @@ machine client, and creates measurable reliability evidence.
 
 ### 4. Evaluation harness
 
+- Implement the layered, reproducible suites, metrics, denominators, artifact
+  rules, and acceptance thresholds in `docs/evaluation-harness-plan.md`.
 - Measure schema-valid response rate, latency, and provider error behavior over
   a bounded test fixture set.
 - Prove settlement is not called when market refresh, provider output, parsing,
@@ -102,6 +104,8 @@ machine client, and creates measurable reliability evidence.
   `InsightAttested.attestationId` from a successful receipt, and verify the
   stored attestation against the event.
 - Publish only test fixtures and aggregate results; never publish secrets.
+- Keep the three existing x402 tests labeled as pre-event baseline coverage;
+  report new in-window tests and failures separately.
 
 ### 5. Judge-facing evidence
 

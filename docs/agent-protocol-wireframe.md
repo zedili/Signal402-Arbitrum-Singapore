@@ -126,7 +126,8 @@ must be validated before implementation is claimed.
 2. Tests for the unpaid 402 response, paid retry, stable hashes, changed-content
    hashes, sequential and concurrent idempotency, replay mismatches, ambiguous
    settlement, exact response-body preservation, standard receipt header
-   validation, and every pre-settlement failure path.
+   validation, and every pre-settlement failure path. Follow the reproducible
+   layers and denominators in `docs/evaluation-harness-plan.md`.
 3. A minimal agent client that demonstrates authorization without embedding a
    funded private key.
 4. One owner-approved Arbitrum Sepolia purchase receipt created in-window.

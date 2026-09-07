@@ -35,6 +35,10 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
   9457 problem contract in `docs/agent-api-contract-wireframe.md`; prove it is
   the only active paid route and that every machine action matches the actual
   payment/settlement state.
+- [ ] Complete `docs/evaluation-harness-plan.md`: deterministic, failure,
+  concurrency, bounded live-provider, and owner-approved end-to-end layers;
+  publish integer denominators and retain failed runs without counting the
+  three pre-event x402 tests as Buildathon-period work.
 
 ## Judge materials
 
