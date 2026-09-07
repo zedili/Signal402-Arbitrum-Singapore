@@ -49,6 +49,7 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
 - [ ] Obtain and record the organizer's written resolution; operate to Oct 1 unless written clarification says otherwise.
 - [x] Preserve the pre-event baseline in the standalone public repository and tag.
 - [ ] Complete more-than-trivial development during the official Buildathon window.
+- [ ] Replace all pre-event draft markers and split baseline accomplishments from verified in-window accomplishments across README, submission copy, judge Q&A, deck, videos, and HackQuest fields.
 - [ ] Reconcile every field against `docs/submission-field-map.md`, including location, prize track, deployment details, and AI-assistance disclosure.
 - [x] Owner confirmed `zedili` and `zdl` are the same person and that the other historical project-team contributors authorized submission use.
 - [x] Replaced and publicly verified the live HackQuest **Progress During Hackathon** field with the truthful pre-window baseline text in `docs/submission-field-map.md` on Sep 7, 2026 after owner confirmation.

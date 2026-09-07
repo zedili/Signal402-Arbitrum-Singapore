@@ -1,5 +1,9 @@
 # Signal402 judge Q&A
 
+Status: **pre-event draft.** Update every answer after the in-window build. Do
+not describe the planned versioned agent API, proof bundle, evaluation harness,
+or report attestation as complete until their evidence gates pass.
+
 Use these answers for live feedback sessions, asynchronous judge questions, and
 the final review. Keep answers concise, demonstrate the product before showing
 architecture, and do not extend a claim beyond the linked evidence.
@@ -22,10 +26,13 @@ validated demand or retention.
 
 ### Why would someone pay when an LLM can answer for free?
 
-Signal402 packages live market context, a stable response schema, explicit
-price and network metadata, server-side credential handling, payment receipts,
-and fail-closed settlement behind one endpoint. The product is the reliable
-commercial boundary and composable API, not access to a generic chat model.
+The current baseline packages live market context, a schema-validated report,
+explicit price and network metadata, server-side credential handling, payment
+receipts, and fail-closed settlement behind one endpoint. The planned
+in-window work adds a published, versioned agent contract; do not call the
+baseline response a stable public agent schema before that work is complete.
+The product value is the reliable commercial boundary, not access to a generic
+chat model.
 
 ### What does the user receive?
 
@@ -117,8 +124,11 @@ Use measurable milestones rather than speculative token plans:
 
 ### Why should this win now?
 
+Replace this pre-event answer after the in-window acceptance gates pass.
+
 Signal402 demonstrates a complete, narrow product loop: live data, explicit
 machine-readable payment terms, wallet authorization, server-side structured
 analysis, failure-safe settlement, and an onchain receipt on Arbitrum. Its scope
-is honest and testable, and its next milestones turn a working technical proof
-into a measurable business experiment.
+is honest and testable. The final answer must lead with the separately evidenced
+Buildathon-period agent workflow rather than presenting this baseline as new
+event work.

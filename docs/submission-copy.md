@@ -1,12 +1,22 @@
 # Signal402 — submission copy
 
+Status: **pre-event draft.** The accomplishments below are baseline work and
+must not be submitted as Buildathon-period progress. After Sep 14, replace this
+notice and add a separately evidenced in-window accomplishments section.
+
 ## One-line pitch
 
 Signal402 lets people and autonomous agents purchase one structured prediction-market report with one non-custodial x402 USDC payment on Arbitrum.
 
 ## Short description
 
-Signal402 is a pay-per-request market-intelligence layer built for the Arbitrum Open House Singapore Buildathon. Users browse live Polymarket events for free, select a market, and unlock a structured AI report for 0.01 USDC on Arbitrum Sepolia. The protected endpoint uses x402 v2 to advertise payment terms, verify browser-wallet authorization, generate a server-side report, and settle only after the report succeeds. Signal402 never custodies user funds and never places trades.
+Signal402 is a pay-per-request market-intelligence layer entered in the
+Arbitrum Open House Singapore Buildathon from a disclosed pre-event baseline.
+Users browse live Polymarket events for free, select a market, and unlock a
+structured AI report for 0.01 USDC on Arbitrum Sepolia. The protected endpoint
+uses x402 v2 to advertise payment terms, verify browser-wallet authorization,
+generate a server-side report, and settle only after the report succeeds.
+Signal402 never custodies user funds and never places trades.
 
 ## Problem
 
@@ -52,7 +62,7 @@ The innovation is not simply “AI plus markets.” Signal402 defines a clean co
 
 Signal402 is an MVP with verified technical execution; it does not yet claim users, revenue, retention, or prediction-accuracy validation.
 
-## Accomplishments
+## Pre-event baseline accomplishments
 
 - Replaced mock market fixtures with live Polymarket data.
 - Replaced a mock/permissive payment flow with a real x402 v2 gate.
@@ -60,11 +70,21 @@ Signal402 is an MVP with verified technical execution; it does not yet claim use
 - Added strict server-side report validation and fail-closed settlement behavior.
 - Added protocol, smart-contract, backend, frontend, build, and dependency-audit checks.
 - Deployed and independently verified the optional `Signal402Registry` hash-attestation contract on Arbitrum Sepolia.
-- Deployed the permanent production app and verified that it returns live market data and a valid x402 `402 Payment Required` response.
+- Deployed the public production app and verified that it returns live market data and a valid x402 `402 Payment Required` response.
+
+## In-window accomplishments
+
+_Pending. Populate only with commit-linked work completed after the official
+Sep 14 start and verified in `docs/progress-during-buildathon.md`._
 
 ## Challenges
 
-The hardest part was treating payment and AI generation as one reliable transaction. A naïve implementation can verify payment too late, settle despite provider failure, expose AI credentials, or trust stale client-side market data. The final architecture refreshes the market snapshot server-side, validates the model response, and commits settlement only after success.
+The hardest pre-event engineering problem was treating payment and AI
+generation as one reliable transaction. A naïve implementation can verify
+payment too late, settle despite provider failure, expose AI credentials, or
+trust stale client-side market data. The current baseline architecture
+refreshes the market snapshot server-side, validates the model response, and
+commits settlement only after success.
 
 ## What we learned
 

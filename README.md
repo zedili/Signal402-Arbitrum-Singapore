@@ -1,6 +1,9 @@
 # Signal402
 
-Signal402 is a non-custodial market-intelligence layer for people and autonomous agents, built for the Arbitrum Open House Singapore Buildathon from the original X402AiPolyMarket prototype.
+Signal402 is a non-custodial market-intelligence layer for people and autonomous
+agents, entered in the Arbitrum Open House Singapore Buildathon as an existing
+project derived from the original X402AiPolyMarket prototype. Substantive event
+work begins only inside the official implementation window.
 
 This is the standalone Buildathon repository. It was imported before the
 official implementation window from the audited source snapshot documented in
@@ -29,7 +32,7 @@ imported baseline and the original repository history, including `wuyangfan`,
 acknowledgment recognizes the pre-existing project baseline; it does not list
 historical contributors as current Buildathon team members.
 
-## What works now
+## Pre-event baseline: what already works
 
 - Live market snapshots from Polymarket's public Gamma API, normalized by server-side Next.js routes.
 - Structured DeepSeek reports that separate market probability, independent estimate, evidence, counterarguments, risks, and assumptions.
@@ -39,7 +42,7 @@ historical contributors as current Buildathon team members.
 - Arbiscan transaction receipts shown after successful settlement.
 - A minimal Solidity registry for optional hash-only insight attestations, with Hardhat tests and a live Arbitrum Sepolia deployment.
 - A Go API retained from the original prototype; its unfinished legacy verifier fails closed.
-- A permanent Vercel production deployment whose live-data pages and x402 `402 Payment Required` response have been verified.
+- A public Vercel production deployment whose live-data pages and x402 `402 Payment Required` response have been verified.
 - A successful end-to-end 0.01 test-USDC settlement with a structured production AI report and an Arbitrum Sepolia receipt.
 
 The old Solana mock-payment page and permissive mock verifier were removed. They are not part of Signal402's active architecture.
