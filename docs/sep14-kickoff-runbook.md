@@ -120,6 +120,10 @@ Use this order:
 5. Keep `docs/progress-during-buildathon.md` linked to exact commits and tests
    after every substantive change.
 
+Execute the feature work as independently testable slices using
+`docs/implementation-map.md`. If observed in-window behavior contradicts a
+planned boundary, record the evidence and revise the map before continuing.
+
 Local implementation and tests inside the verified window are authorized by
 the participation objective. The following still require separate approval:
 
