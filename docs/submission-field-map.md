@@ -115,6 +115,9 @@ form wording and milestone obligations. The Promising Products track appears to
 be exempt from the staged 25%/25%/50% prize conditions described for other
 categories, which may materially affect the choice.
 
+Use `docs/prize-track-decision.md` for the verified amounts, tradeoffs,
+recommended selection rule, and exact owner-confirmation gates.
+
 Do not select a Robinhood Chain track or claim a Robinhood deployment unless a
 real, tested deployment is completed and the owner has approved that strategy.
 
