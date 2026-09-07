@@ -126,10 +126,30 @@ in-window deck:
   so the deck shows the final submitted build. Record their capture source,
   time, author/tool, and hashes.
 
+## Baseline video container preflight
+
+The two tracked MP4 files received a read-only container and metadata preflight
+on Sep 7, 2026. Windows media metadata and direct binary inspection produced
+the following inventory:
+
+| File | Duration | Video | Audio marker | Bytes | SHA-256 |
+| --- | ---: | --- | --- | ---: | --- |
+| `docs/media/Signal402-Demo-Video.mp4` | 00:01:05 | 1280×720, 30 fps, `avc1` | `mp4a` | 1,834,666 | `3e0f89390973a05813ac4519ed268975c766f9aea6fab246bc2b48acdc887cd2` |
+| `docs/media/Signal402-Pitch-Video.mp4` | 00:01:32 | 1280×720, 30 fps, `avc1` | `mp4a` | 2,141,482 | `6ab7d7d07e9073868536d2e8791593165123631f2c3677e936c2a4e4ce7fe56f` |
+
+The operating system reported both files as unprotected. A redacted
+ASCII/UTF-16 metadata scan found no email address, common API/private-key
+marker, seed-phrase marker, or 20-byte EVM address. The only detected URL host
+was `www.videolan.org`, embedded in the standard x264 encoder-identification
+string. This scan does not inspect pixels or transcribed speech and therefore
+does not prove that visible or spoken sensitive data is absent.
+
 This review did not verify the generation history or input rights of the two
-embedded screenshots, and the local browser security boundary prevented a
-frame-by-frame or audio inspection of the MP4 files. Those rights remain owner
-confirmation gates.
+embedded deck screenshots. The local browser security boundary and unavailable
+local decoder also prevented a frame-by-frame or listening inspection of the
+MP4 files. Image, narration, music, font, screenshot, and recording rights—and
+any sensitive information visible or spoken in the videos—remain owner and
+final in-window media-audit gates.
 
 Before publishing an updated deck or video, complete all of the following:
 
