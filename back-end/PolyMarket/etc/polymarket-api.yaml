@@ -1,0 +1,69 @@
+Name: PolyMarket-api
+Host: 0.0.0.0
+Port: 8888
+Mode: dev
+
+# ✅ go-zero v1.9.x 正确的 CORS 配置
+Cors:
+  AllowOrigins:
+    - http://localhost:3000
+  AllowMethods:
+    - GET
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+  AllowHeaders:
+    - Content-Type
+    - Authorization
+  ExposeHeaders:
+    - Content-Length
+  AllowCredentials: false
+  MaxAge: 3600
+
+# 日志配置
+Log:
+  ServiceName: polymarket-api
+  Mode: console
+  Level: info
+  Path: logs
+  KeepDays: 7
+  Compress: false
+
+# MySQL 配置
+MySQL:
+  Host: 127.0.0.1
+  Port: 3306
+  User: root
+  Password: ""
+  Database: polymarket
+  MaxOpenConns: 100
+  MaxIdleConns: 10
+  ConnMaxLifetime: 3600
+
+# Redis 配置
+Redis:
+  Host: 127.0.0.1:6379
+  Password: ""
+  DB: 0
+  PoolSize: 10
+
+# 区块链配置
+Blockchain:
+  RpcUrl: http://127.0.0.1:8545
+  ChainId: 31337
+  PrivateKey: ""
+
+# JWT 配置
+Auth:
+  AccessSecret: your-access-secret-key-change-in-production
+  AccessExpire: 86400
+  RefreshSecret: your-refresh-secret-key-change-in-production
+  RefreshExpire: 604800
+
+# 业务配置
+Business:
+  PlatformFeeRate: 0.02
+  MinMarketDuration: 86400
+  MaxMarketDuration: 31536000
+  MinLiquidity: 1000
