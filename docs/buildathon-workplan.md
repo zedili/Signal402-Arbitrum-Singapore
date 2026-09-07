@@ -113,6 +113,8 @@ machine client, and creates measurable reliability evidence.
    client.
 4. **Sep 23–25:** implement the evaluation harness and failure-path coverage.
 5. **Sep 23–25:** create and integrate the provenance-clean visual refresh.
+   Resolve the `typeit`, GSAP, platform-specific Sharp, and third-party-notice
+   gates in `docs/dependency-license-preflight.md` as part of that refresh.
 6. **Sep 26–27:** deploy, run testnet proof transactions, and collect evidence.
 7. **Sep 28–29:** update videos, submission copy, and judge Q&A. In the deck,
    replace every historical repository or temporary-preview source, refresh

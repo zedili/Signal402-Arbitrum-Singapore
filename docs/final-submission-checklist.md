@@ -35,6 +35,7 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
 - [x] CI scans tracked files for common credential patterns.
 - [x] Frontend and contract production-dependency audits report no known vulnerabilities as of Sep 7, 2026.
 - [ ] Re-audit the complete contract development toolchain during the official window and resolve or explicitly document residual Hardhat-toolchain advisories before an owner-approved transaction; the Sep 7 full audit reported 37 development-dependency advisories (16 high, 7 moderate, 14 low) while the production-only audit remained clean.
+- [ ] Complete `docs/dependency-license-preflight.md`: remove or approve the unused GPL `typeit` dependency, replace or document GSAP, audit the actual deployment artifact, and generate final third-party notices.
 - [x] Production AI key is server-only.
 - [x] The historical DeepSeek key is absent from the provider inventory and the [GitHub secret-scanning alert](https://github.com/zedili/X402AiPolyMarket/security/secret-scanning/1) is closed as revoked.
 - [x] Rotated the production DeepSeek key, updated Vercel, revoked the previous key, and re-ran the paid readiness check.
