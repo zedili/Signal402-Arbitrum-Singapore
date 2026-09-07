@@ -37,8 +37,12 @@ The in-window versioned endpoint must preserve those two channels:
    registry call preview, and non-authoritative payment context such as the
    expected network, asset, amount, recipient, and receipt-channel name.
 2. The authoritative x402 settlement result remains in the standard
-   `PAYMENT-RESPONSE` header. Transaction, payer, success, settled amount, and
-   any protocol extensions are decoded from that header.
+   `PAYMENT-RESPONSE` header. The pinned SDK requires `success`, `transaction`,
+   and `network`; `payer`, actual settled `amount`, `extensions`, and `extra`
+   are optional and must be treated as present only when decoded from that
+   header. The client validates quoted asset, maximum/exact amount, and
+   recipient against the accepted `PAYMENT-REQUIRED` requirement and payment
+   payload rather than inventing those fields in the settlement receipt.
 3. The reference client may expose a convenience object that combines the
    validated body with the decoded settlement result, but documentation must
    label it as a **client-composed result**, not the server's JSON response.

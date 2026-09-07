@@ -78,7 +78,7 @@ must be validated before implementation is claimed.
 | Generation | Provider/model identifier, validation status, and timing | No secret prompt, credential, or provider token |
 | Proof | Deterministic market and content hashes plus registry call preview | Hashes only; never publish the private report body onchain |
 | Payment context in JSON body | Expected network, asset, amount, recipient, protocol, and `PAYMENT-RESPONSE` receipt-channel name | Terms are not proof that settlement succeeded |
-| Settlement in response header | Authoritative success, transaction, network, settled amount, payer, and protocol extensions decoded from `PAYMENT-RESPONSE` | Testnet evidence is not customer revenue; the server must not duplicate or contradict these fields in the body |
+| Settlement in response header | Authoritative `success`, `transaction`, and `network`, plus optional `payer`, actual settled `amount`, `extensions`, and `extra`, decoded from `PAYMENT-RESPONSE` | Testnet evidence is not customer revenue; quoted asset/amount/recipient come from the accepted payment requirement and payload, not invented receipt fields; the server must not duplicate or contradict decoded settlement fields in the body |
 | Attestation | Canonical registry, chain, deterministic call arguments, optional transaction, emitted attestation ID, and status | User-controlled and optional; no ID exists before mining |
 
 ## State wireframe
