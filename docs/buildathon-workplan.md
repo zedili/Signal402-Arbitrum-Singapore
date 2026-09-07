@@ -37,7 +37,10 @@ machine client, and creates measurable reliability evidence.
 - Return the standard x402 v2 payment requirement to an unpaid client.
 - Preserve the existing rule that provider or schema failure cancels settlement.
 - Return a versioned JSON envelope containing the source snapshot, structured
-  analysis, generation metadata, payment receipt, and hash fields.
+  analysis, generation metadata, expected payment context, receipt-channel
+  metadata, and hash fields. Keep the authoritative settlement result in the
+  standard `PAYMENT-RESPONSE` header; do not duplicate it into the body after
+  settlement. Follow `docs/x402-response-boundary.md`.
 - Keep AI credentials and market refresh server-side.
 
 ### 2. Deterministic proof bundle
@@ -57,7 +60,10 @@ machine client, and creates measurable reliability evidence.
 
 - Add a minimal command-line example using the official x402 client packages.
 - Demonstrate the initial 402 response, wallet authorization, paid retry,
-  structured response validation, and receipt extraction.
+  structured response validation, and receipt extraction from the standard
+  response header.
+- Expose any combined report-and-settlement object only as a client-composed
+  convenience result, not as the server's raw JSON response.
 - Default to testnet and require the operator to supply its own signer securely.
 - Never include or generate a funded private key in the repository.
 
@@ -67,6 +73,9 @@ machine client, and creates measurable reliability evidence.
   a bounded test fixture set.
 - Prove settlement is not called when market refresh, provider output, parsing,
   or schema validation fails.
+- Prove the response bytes supplied to settlement are the same bytes delivered
+  to the caller, and reject a missing, malformed, failed, or network-mismatched
+  `PAYMENT-RESPONSE` header in the reference client.
 - Verify canonical hashes are stable across key-order differences and change
   when report content changes.
 - Cover deterministic registry call data, decode the emitted

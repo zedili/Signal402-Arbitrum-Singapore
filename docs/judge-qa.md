@@ -115,7 +115,8 @@ contributors as preserved in Git history.
 
 Use measurable milestones rather than speculative token plans:
 
-1. Publish a stable agent API and receipt schema.
+1. Publish a stable agent API with a documented JSON-body and standard
+   `PAYMENT-RESPONSE` receipt-header boundary.
 2. Add a second analysis provider with deterministic fallback behavior.
 3. Ship an evaluation harness for report validity, calibration, and latency.
 4. Run a bounded pilot and report real activation, repeat use, and paid-request

@@ -59,7 +59,8 @@ ship a clearly substantive new feature during the official Buildathon window.
 
 Recommended in-window scope:
 
-1. Publish an agent-native report API and stable receipt schema.
+1. Publish an agent-native report API with a documented JSON-body and standard
+   `PAYMENT-RESPONSE` receipt-header boundary.
 2. Add an evaluation harness covering report schema validity, latency, provider
    failure, and settlement cancellation.
 3. Document the baseline commit, in-window commits, deployed result, tests, and
