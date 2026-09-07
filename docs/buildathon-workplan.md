@@ -45,7 +45,9 @@ machine client, and creates measurable reliability evidence.
 
 ### 2. Deterministic proof bundle
 
-- Define canonical JSON serialization for the report and source snapshot.
+- Validate and implement the RFC 8785 JCS plus domain-separated Ethereum
+  `keccak256` design in `docs/canonical-proof-wireframe.md`; revise the version
+  explicitly if an in-window test vector disproves an assumption.
 - Compute and return `marketIdHash`, `contentHash`, and deterministic registry
   call arguments without exposing private report data onchain. Do not return a
   predicted `attestationId`: the current contract derives it from the caller
@@ -77,7 +79,8 @@ machine client, and creates measurable reliability evidence.
   to the caller, and reject a missing, malformed, failed, or network-mismatched
   `PAYMENT-RESPONSE` header in the reference client.
 - Verify canonical hashes are stable across key-order differences and change
-  when report content changes.
+  when covered report content changes. Commit cross-runtime byte-and-hash test
+  vectors, including Unicode, number, invalid-input, and array-order cases.
 - Cover deterministic registry call data, decode the emitted
   `InsightAttested.attestationId` from a successful receipt, and verify the
   stored attestation against the event.

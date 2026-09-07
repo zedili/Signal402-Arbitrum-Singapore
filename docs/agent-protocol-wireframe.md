@@ -92,9 +92,9 @@ the official window.
 
 ## Decisions reserved for the official window
 
-- Select and document the canonical JSON method before writing hash code.
-- Define which response fields the content hash covers and how version changes
-  prevent ambiguous hashes.
+- Validate the RFC 8785 JCS, domain-separated `keccak256`, and covered-field
+  candidate in `docs/canonical-proof-wireframe.md` before writing hash code;
+  record any incompatible revision under a new schema/domain version.
 - Decide whether a request identifier is random, content-derived, or both.
 - Define idempotency and replay behavior for paid retries.
 - Define typed failures for market refresh, provider output, parsing, schema

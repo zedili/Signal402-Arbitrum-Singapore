@@ -16,6 +16,12 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
 - [x] With explicit owner approval, deployed `Signal402Registry` to Arbitrum Sepolia: https://sepolia.arbiscan.io/address/0xc896eb3b013a60deca7029dc2aa4f0da9a5faf82
 - [x] Independently verified the deployment receipt, deployer, zero value, runtime bytecode, and function-call behavior.
 - [x] Sourcify exact-match source verification: https://repo.sourcify.dev/421614/0xc896eB3B013a60deCA7029dc2aa4F0da9a5faf82
+- [ ] Implement and publish the in-window RFC 8785 JCS plus domain-separated
+  `keccak256` proof bundle with cross-runtime test vectors; see
+  `docs/canonical-proof-wireframe.md`.
+- [ ] Verify that the semantic `contentHash` excludes payment and attestation
+  metadata, while the unchanged response body and authoritative
+  `PAYMENT-RESPONSE` header are independently validated.
 
 ## Judge materials
 
