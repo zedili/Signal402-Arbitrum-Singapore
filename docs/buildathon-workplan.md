@@ -7,6 +7,11 @@ record the final docs-only pre-event `main` commit at kickoff, then keep all
 qualifying implementation commits inside the official window. Maintain the
 commit-linked evidence ledger in `docs/progress-during-buildathon.md`.
 
+Because the Terms do not provide a precise start time while HackQuest displays
+Sep 14 at 01:01 in UTC+8, follow `docs/sep14-kickoff-runbook.md`: do not begin
+implementation before **Sep 14, 2026 01:01 UTC+8**, and proceed only after the
+official page visibly shows the window as open.
+
 At kickoff, continue from the then-current `main`. Do not reset or branch from
 the baseline tag: the commits after the tag are pre-event documentation and
 evidence controls that must remain in history. Qualification is proven by the
