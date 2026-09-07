@@ -1,9 +1,11 @@
 # Signal402 in-window Buildathon workplan
 
 This is a pre-event planning document only. Do not begin implementation before
-the official Buildathon starts on Sep 14, 2026. Record the final pre-event Git
-commit as the baseline, then keep all qualifying implementation commits inside
-the official window.
+the official Buildathon starts on Sep 14, 2026. Use the standalone repository's
+`arbitrum-singapore-pre-event-2026-09-07` tag as the immutable product baseline,
+record the final docs-only pre-event `main` commit at kickoff, then keep all
+qualifying implementation commits inside the official window. Maintain the
+commit-linked evidence ledger in `docs/progress-during-buildathon.md`.
 
 ## Objective
 
@@ -90,8 +92,8 @@ machine client, and creates measurable reliability evidence.
 
 ## Suggested sequence
 
-1. **Sep 14:** tag or record the pre-event baseline, re-check terms, and confirm
-   the submission portal is open.
+1. **Sep 14:** verify the immutable baseline tag, record the final pre-event
+   `main` head, re-check terms, and confirm the submission portal is open.
 2. **Sep 14–18:** implement the versioned API and canonical proof bundle.
 3. **Sep 19–22:** integrate optional registry attestation and the reference
    client.
