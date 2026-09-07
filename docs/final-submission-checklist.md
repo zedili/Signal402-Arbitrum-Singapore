@@ -59,6 +59,9 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
 - [x] Project wallet connected: `0x0573f139d21fb3140155567Cba7630d3948F4ea3`.
 - [x] Submission copy reviewed: `docs/submission-copy.md`.
 - [x] Demo script reviewed: `docs/demo-script.md`.
+- [ ] Record, audit, hash, and owner-approve the final in-window video using
+  `docs/final-demo-plan.md`; replace the HackQuest Demo Video only after the
+  uploaded file and field mapping are independently verified.
 
 ## Security gate
 

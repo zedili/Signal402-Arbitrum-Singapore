@@ -87,7 +87,7 @@ must be validated before implementation is claimed.
 | --- | --- | --- |
 | Payment required | Return one valid x402 v2 requirement | No prompt until the client chooses to continue |
 | Authorization pending | Perform no provider work and no settlement | Show exact testnet, asset, amount, and recipient |
-| Payment verified | Atomically claim the purchase and request fingerprint before refreshing the source | No second authorization for the same request |
+| Authorization presented | Atomically claim the purchase/credential/request-fingerprint tuple, then verify x402 before refreshing the source | No second authorization for the same request |
 | Matching attempt in progress | Return a typed retry-later result; do not duplicate provider or settlement work | Reuse the same purchase key and signed credential after backoff |
 | Matching settled replay | Return stored exact body bytes plus the stored standard receipt header | Do not sign again |
 | Replay mismatch | Reject before provider work or settlement | Require a deliberate new purchase, key, and explicit authorization |

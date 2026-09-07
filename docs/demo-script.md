@@ -1,5 +1,10 @@
 # Signal402 — 3-minute demo script
 
+Status: **pre-event baseline script.** It describes the existing human-facing
+flow and must not be uploaded as the final Buildathon demo without an in-window
+rewrite and evidence audit. Use `docs/final-demo-plan.md` for the guarded final
+storyboard.
+
 ## 0:00–0:25 — The problem
 
 “Prediction markets make the crowd probability public, but useful analysis is still bundled behind subscriptions, accounts, or opaque APIs. Signal402 makes one structured report purchasable as one explicit transaction—for a person or an autonomous agent.”
