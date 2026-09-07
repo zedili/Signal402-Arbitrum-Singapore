@@ -98,6 +98,16 @@ Observed again on Sep 7, 2026 while signed in as the owner:
   the submission window opens and the final submit action is completed.
 - Registration on the Singapore event page remains `Registered`.
 
+A separate logged-out public-link audit on Sep 7, 2026 confirmed that the
+project page exposes the same Description, Progress, repository, Solo Project,
+and sole-member state to judges. The production homepage loaded live market
+cards after its initial request; the post-key-rotation Arbiscan transaction
+still showed a successful 0.01 test-USDC transfer on Arbitrum Sepolia; and the
+canonical registry still showed an **Exact Match** on Sourcify with contract
+name `Signal402Registry`. These are pre-event baseline availability checks, not
+evidence that the final in-window build has been submitted. Re-run them against
+the final public commit and deployment.
+
 ## Event-specific fields to resolve
 
 ### Location
