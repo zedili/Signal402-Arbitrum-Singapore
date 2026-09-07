@@ -162,9 +162,10 @@ request headers.
 
 Before enabling the versioned paid endpoint in production:
 
-1. Select a durable atomic store and document its operator, region, retention,
-   credentials, and data-processing boundary. Creating or connecting an
-   external service and its production secret requires owner confirmation.
+1. Resolve the provider decision in `docs/replay-store-decision.md` and document
+   its operator, region, retention, credentials, and data-processing boundary.
+   Creating or connecting an external service and its production secret
+   requires owner confirmation.
 2. Implement the store behind a narrow interface so unit tests use a local
    deterministic adapter while production refuses to start with the memory
    adapter.

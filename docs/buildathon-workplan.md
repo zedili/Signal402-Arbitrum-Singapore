@@ -136,7 +136,9 @@ machine client, and creates measurable reliability evidence.
 - A fresh production smoke test returns live market data and a valid unpaid 402.
 - The production paid endpoint uses a durable atomic replay store; an in-memory
   adapter is test-only. Store selection, external connection, and production
-  secret configuration have owner approval.
+  secret configuration have owner approval. Use
+  `docs/replay-store-decision.md` for the reviewed provider decision rather than
+  provisioning ad hoc infrastructure.
 - At least one new paid agent-client request settles on Arbitrum Sepolia.
 - At least one optional report hash is attested through the canonical registry.
 - Every public claim has a URL, transaction, test, or reproducible command as

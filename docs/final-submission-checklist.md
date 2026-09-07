@@ -27,6 +27,10 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
   at most one provider call and one settlement attempt, prove settled replay
   returns stored bytes/receipt without a new transfer, and retain an honest
   `outcome_unknown` stop state wherever reconciliation is not proven.
+- [ ] Obtain owner approval for the exact durable-store provider, plan, region,
+  retained fields/TTL, secrets, migration, and deployment actions using
+  `docs/replay-store-decision.md`; save no raw payment signature or
+  idempotency key.
 - [ ] Publish and validate the strict `/api/v1/reports` success schema and RFC
   9457 problem contract in `docs/agent-api-contract-wireframe.md`; prove it is
   the only active paid route and that every machine action matches the actual
