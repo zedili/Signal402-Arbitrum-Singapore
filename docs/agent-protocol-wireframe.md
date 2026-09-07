@@ -71,7 +71,7 @@ the official window.
 | Generation | Provider/model identifier, validation status, and timing | No secret prompt, credential, or provider token |
 | Proof | Deterministic market and content hashes plus registry call preview | Hashes only; never publish the private report body onchain |
 | Payment | Network, asset, amount, payer, recipient, and settlement transaction | Testnet evidence is not customer revenue |
-| Attestation | Canonical registry, chain, optional transaction, and status | User-controlled and optional |
+| Attestation | Canonical registry, chain, deterministic call arguments, optional transaction, emitted attestation ID, and status | User-controlled and optional; no ID exists before mining |
 
 ## State wireframe
 
@@ -82,8 +82,8 @@ the official window.
 | Payment verified | Refresh the source and generate the report | No second authorization for the same request |
 | Provider or validation failure | Cancel the verified payment path and return a typed failure | Show that no settlement receipt exists |
 | Report delivered | Return the validated envelope and settlement receipt | Link the Arbitrum Sepolia transaction |
-| Attestation offered | Return deterministic call data and canonical registry details | Require a separate, explicit wallet confirmation |
-| Attestation confirmed | Record the transaction and event as optional proof | Link the registry transaction |
+| Attestation offered | Return deterministic call data and canonical registry details; omit the not-yet-created attestation ID | Require a separate, explicit wallet confirmation |
+| Attestation confirmed | Decode the real ID from `InsightAttested`, verify stored data, and record the transaction as optional proof | Link the registry transaction |
 
 ## Decisions reserved for the official window
 
@@ -94,6 +94,9 @@ the official window.
 - Define idempotency and replay behavior for paid retries.
 - Define typed failures for market refresh, provider output, parsing, schema
   validation, verification, settlement, and optional attestation.
+- Keep the registry preview limited to chain, address, function, and arguments.
+  The contract hashes caller address and inclusion block into `attestationId`,
+  so only the mined event can supply the authoritative ID.
 - Confirm that logs and evaluation fixtures never expose payment signatures,
   credentials, private report bodies, or personal data.
 
@@ -106,7 +109,7 @@ the official window.
    funded private key.
 4. One owner-approved Arbitrum Sepolia purchase receipt created in-window.
 5. One separately owner-approved optional registry attestation created
-   in-window.
+   in-window, with its ID decoded from the event and its stored fields verified.
 6. A production deployment identifier, smoke-test transcript, and final
    tag-to-head comparison.
 

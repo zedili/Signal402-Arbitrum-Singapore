@@ -43,8 +43,11 @@ machine client, and creates measurable reliability evidence.
 ### 2. Deterministic proof bundle
 
 - Define canonical JSON serialization for the report and source snapshot.
-- Compute and return `marketIdHash`, `contentHash`, and an `attestationId` input
-  preview without exposing private report data onchain.
+- Compute and return `marketIdHash`, `contentHash`, and deterministic registry
+  call arguments without exposing private report data onchain. Do not return a
+  predicted `attestationId`: the current contract derives it from the caller
+  and inclusion block, so the real ID exists only when the transaction is
+  mined.
 - Show the canonical registry address and network in the response and UI.
 - Add a wallet-controlled, explicitly optional action that calls
   `Signal402Registry.attest(marketIdHash, contentHash)` on Arbitrum Sepolia.
@@ -66,7 +69,9 @@ machine client, and creates measurable reliability evidence.
   or schema validation fails.
 - Verify canonical hashes are stable across key-order differences and change
   when report content changes.
-- Cover the registry call data and emitted attestation event.
+- Cover deterministic registry call data, decode the emitted
+  `InsightAttested.attestationId` from a successful receipt, and verify the
+  stored attestation against the event.
 - Publish only test fixtures and aggregate results; never publish secrets.
 
 ### 5. Judge-facing evidence

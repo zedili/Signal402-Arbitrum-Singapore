@@ -115,8 +115,8 @@ Use this order:
    cleanup as the innovation.
 3. Implement the versioned agent endpoint and proof bundle from
    `docs/agent-protocol-wireframe.md`.
-4. Add the agent client, evaluation harness, registry call preview, and typed
-   failure coverage.
+4. Add the agent client, evaluation harness, deterministic registry call
+   preview, event-decoded attestation ID, and typed failure coverage.
 5. Keep `docs/progress-during-buildathon.md` linked to exact commits and tests
    after every substantive change.
 
