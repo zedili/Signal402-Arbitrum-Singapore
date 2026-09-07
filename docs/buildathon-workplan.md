@@ -112,7 +112,11 @@ machine client, and creates measurable reliability evidence.
 4. **Sep 23–25:** implement the evaluation harness and failure-path coverage.
 5. **Sep 23–25:** create and integrate the provenance-clean visual refresh.
 6. **Sep 26–27:** deploy, run testnet proof transactions, and collect evidence.
-7. **Sep 28–29:** update videos, submission copy, and judge Q&A.
+7. **Sep 28–29:** update videos, submission copy, and judge Q&A. In the deck,
+   replace every historical repository or temporary-preview source, refresh
+   the test counts and screenshots, recast the obsolete roadmap, and add the
+   authorized historical-project acknowledgment recorded in
+   `docs/ip-provenance-review.md`.
 8. **Sep 30 by 8:00 PM UTC+8:** complete the final owner-confirmed submission,
    ahead of the earlier Oct 1 terms deadline.
 

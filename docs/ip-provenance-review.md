@@ -92,10 +92,44 @@ final submission:
 
 ## Presentation audit status
 
-The local pitch deck exists and is tracked, but the required presentation
-inspection and rendering runtime could not process it in the current
-environment. No claim is made that all slides, notes, images, fonts, sources,
-or layouts have passed review.
+The seven-slide local pitch deck was rendered and inspected at full resolution
+on Sep 7, 2026. Its package-integrity and canvas-overflow checks passed, the
+deck uses Aptos and Aptos Display, and no visible secret was found. The deck
+contains two embedded first-party product screenshots and no other raster
+media:
+
+| Embedded media | Visible content | SHA-256 | Repository match |
+| --- | --- | --- | --- |
+| `ppt/media/image.jpeg` | Signal402 homepage screenshot | `996304de564b6811191056c61f0977d026b8015f81458829ebc74d3652091868` | None; embedded only |
+| `ppt/media/image2.jpeg` | Signal402 live-markets screenshot | `fdf646aa6a1e5db138d4e80e41b94eab8f0642d147a0c06caff18df2549fd906` | None; embedded only |
+
+The inspection found several items that must be corrected in the final
+in-window deck:
+
+- All seven speaker-note source blocks still point to the historical
+  `X402AiPolyMarket` repository. Replace them with the standalone event
+  repository and commit-specific evidence.
+- Slides 1 and 4 cite the temporary Vercel preview in their notes. Replace it
+  with `https://signal402.vercel.app` and a final in-window deployment URL or
+  identifier.
+- Slide 6 says there are two x402 protocol tests and two smart-contract tests.
+  The Sep 7 baseline already has three of each; replace these counts with the
+  final verified test results rather than carrying the stale numbers forward.
+- Slide 7 lists permanent deployment and a live testnet payment as future work,
+  although both are already pre-event baseline accomplishments. Recast this
+  slide around the actual in-window result and remaining roadmap.
+- Slide 7 says the solo founder owns product and implementation delivery end to
+  end without acknowledging the authorized historical project team. Preserve
+  the solo Buildathon-team description, but add a concise historical-baseline
+  acknowledgment consistent with the repository and submission copy.
+- Refresh the two screenshots after the official implementation window begins
+  so the deck shows the final submitted build. Record their capture source,
+  time, author/tool, and hashes.
+
+This review did not verify the generation history or input rights of the two
+embedded screenshots, and the local browser security boundary prevented a
+frame-by-frame or audio inspection of the MP4 files. Those rights remain owner
+confirmation gates.
 
 Before publishing an updated deck or video, complete all of the following:
 
