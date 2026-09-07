@@ -1,5 +1,14 @@
 # X402 协议接入指南
 
+> [!WARNING]
+> **历史赛前资料，不是 Signal402 当前架构，也不能用于部署。** 本文保留的是
+> 早期 Solana/mock 方案，其中示例 `verifyPayment` 会直接返回 `true`，仅用于
+> 追溯旧项目思路。当前参赛实现使用 Arbitrum Sepolia、x402 v2 官方包、
+> EIP-3009 授权、facilitator 验证和失败不结算策略。请以根目录 `README.md`、
+> `front-end/src/lib/x402/server.ts` 与 `front-end/app/api/analysis/route.ts` 为准。
+
+本文不得作为安全实现指南、当前功能声明或 Buildathon 赛内成果引用。
+
 ## 什么是 X402？
 
 **X402** 是由 Coinbase 开发者平台推出的开源支付协议，基于 **HTTP 402 Payment Required** 状态码，专门用于实现互联网原生支付。
