@@ -96,6 +96,7 @@ must be validated before implementation is claimed.
 | Report delivered | Return the validated JSON body unchanged and the settlement receipt in `PAYMENT-RESPONSE` | Validate both channels, compose the display object locally, and link the Arbitrum Sepolia transaction |
 | Attestation offered | Return deterministic call data and canonical registry details; omit the not-yet-created attestation ID | Require a separate, explicit wallet confirmation |
 | Attestation confirmed | Decode the real ID from `InsightAttested`, verify stored data, and record the transaction as optional proof | Link the registry transaction |
+| Attestation unknown or failed | Preserve the purchased report; reconcile any existing hash before another write | Never auto-resubmit; disclose that a revert can consume test ETH gas |
 
 ## Decisions reserved for the official window
 
@@ -117,6 +118,9 @@ must be validated before implementation is claimed.
 - Keep the registry preview limited to chain, address, function, and arguments.
   The contract hashes caller address and inclusion block into `attestationId`,
   so only the mined event can supply the authoritative ID.
+- Apply the complete simulation, confirmation, broadcast, recovery, event-ID,
+  mapping-readback, and claim boundary in
+  `docs/registry-attestation-wireframe.md`.
 - Confirm that logs and evaluation fixtures never expose payment signatures,
   credentials, private report bodies, or personal data.
 

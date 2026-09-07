@@ -74,7 +74,7 @@ headers, and secret-scan result.
 | Replay store | unavailable, timeout, insert conflict, stale version, expired row, corrupt settled row | Fail closed or follow the documented replay state; never duplicate provider/settlement work |
 | Facilitator | unsupported network, invalid authorization, timeout, verification error, definite unconsumed settlement failure, ambiguous settlement result | Preserve the documented payment state; ambiguous results never invite an automatic new authorization |
 | Response receipt | missing, malformed, failed, wrong network, wrong payer/amount where present, invalid transaction hash | Reference client refuses success even when body schema is valid |
-| Registry | wrong chain/address/calldata, reverted transaction, absent/mismatched event, stored-field mismatch | Purchased report remains valid; optional attestation is not claimed |
+| Registry | wrong chain/address/runtime code/calldata, wallet rejection, reverted/replaced/cancelled/unknown transaction, absent/spoofed/mismatched event, stored-field mismatch | Purchased report remains valid; optional attestation is not claimed or blindly resubmitted |
 
 Provider/facilitator raw messages must be captured only in a private redacted
 diagnostic channel if needed. Public API details remain stable and generic.

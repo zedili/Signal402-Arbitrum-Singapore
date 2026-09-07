@@ -106,6 +106,17 @@ contract. The x402 payment flow works without it. Keeping these concerns
 separate reduces the active payment surface and avoids putting report contents
 onchain.
 
+### What does the registry attestation actually prove?
+
+It proves that a wallet submitted a market hash and content hash to the
+canonical registry in a successful Arbitrum Sepolia transaction. When a
+disclosed report recomputes to that content hash, it proves the report matches
+the commitment. It does not prove the analysis is true, that the requester
+authored or purchased it, or that the hash is confidential. The contract is
+permissionless and immutable, and the optional transaction is separate from
+the x402 receipt. Replace this pre-event wording with the in-window receipt,
+decoded event, recomputed ID, and mapping readback before claiming completion.
+
 ## Security and limitations
 
 ### Who controls funds and keys?

@@ -39,6 +39,10 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
   concurrency, bounded live-provider, and owner-approved end-to-end layers;
   publish integer denominators and retain failed runs without counting the
   three pre-event x402 tests as Buildathon-period work.
+- [ ] Implement and prove `docs/registry-attestation-wireframe.md`: canonical
+  code check, simulation, zero-value owner-approved write, pending recovery,
+  strict event/ID/mapping verification, and honest hash-commitment claims; no
+  automatic duplicate transaction.
 
 ## Judge materials
 

@@ -66,6 +66,10 @@ machine client, and creates measurable reliability evidence.
 - Show the canonical registry address and network in the response and UI.
 - Add a wallet-controlled, explicitly optional action that calls
   `Signal402Registry.attest(marketIdHash, contentHash)` on Arbitrum Sepolia.
+- Follow `docs/registry-attestation-wireframe.md`: verify canonical runtime
+  code, simulate and decode the exact zero-value call, request one explicit
+  owner-approved wallet transaction, derive the ID only from the mined event,
+  and verify transaction/event/mapping agreement.
 - Display and link both the x402 settlement receipt and registry transaction.
 
 ### 3. Agent reference client
@@ -103,6 +107,9 @@ machine client, and creates measurable reliability evidence.
 - Cover deterministic registry call data, decode the emitted
   `InsightAttested.attestationId` from a successful receipt, and verify the
   stored attestation against the event.
+- Cover wallet rejection, timeout, replacement, revert, spoofed/missing event,
+  pending recovery, and duplicate-suppression paths without automatically
+  submitting another transaction.
 - Publish only test fixtures and aggregate results; never publish secrets.
 - Keep the three existing x402 tests labeled as pre-event baseline coverage;
   report new in-window tests and failures separately.
