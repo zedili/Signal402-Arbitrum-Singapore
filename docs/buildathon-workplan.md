@@ -89,6 +89,11 @@ machine client, and creates measurable reliability evidence.
 - All new implementation commits have timestamps inside the official window.
 - Frontend tests, type checks, production build, contract tests, Go tests, and
   repository secret scanning pass from a clean checkout.
+- Frontend and contract production-dependency audits pass. Re-run the full
+  contract development-dependency audit and either resolve the Hardhat
+  toolchain advisories or document each accepted residual risk before using the
+  toolchain for an owner-approved transaction. Do not claim that all
+  dependencies are vulnerability-free while those advisories remain.
 - A fresh production smoke test returns live market data and a valid unpaid 402.
 - At least one new paid agent-client request settles on Arbitrum Sepolia.
 - At least one optional report hash is attested through the canonical registry.
@@ -99,7 +104,8 @@ machine client, and creates measurable reliability evidence.
 ## Suggested sequence
 
 1. **Sep 14:** verify the immutable baseline tag, record the final pre-event
-   `main` head, re-check terms, and confirm the submission portal is open.
+   `main` head, re-check terms, confirm the submission portal is open, and
+   repeat the dependency audit before selecting a Hardhat upgrade path.
 2. **Sep 14–18:** implement the versioned API and canonical proof bundle.
 3. **Sep 19–22:** integrate optional registry attestation and the reference
    client.

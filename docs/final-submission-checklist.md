@@ -33,13 +33,15 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
 
 - [x] No AI key or wallet private key exists in the current tracked tree.
 - [x] CI scans tracked files for common credential patterns.
+- [x] Frontend and contract production-dependency audits report no known vulnerabilities as of Sep 7, 2026.
+- [ ] Re-audit the complete contract development toolchain during the official window and resolve or explicitly document residual Hardhat-toolchain advisories before an owner-approved transaction; the Sep 7 full audit reported 37 development-dependency advisories (16 high, 7 moderate, 14 low) while the production-only audit remained clean.
 - [x] Production AI key is server-only.
 - [x] The historical DeepSeek key is absent from the provider inventory and the [GitHub secret-scanning alert](https://github.com/zedili/X402AiPolyMarket/security/secret-scanning/1) is closed as revoked.
 - [x] Rotated the production DeepSeek key, updated Vercel, revoked the previous key, and re-ran the paid readiness check.
 
 ## Final external action
 
-- [x] Re-ran frontend tests, TypeScript checks, the Next.js production build, contract tests, Go tests, and production HTTP smoke checks on Aug 31, 2026.
+- [x] Re-ran frontend tests, TypeScript checks, the Next.js production build, contract tests, Go tests, dependency audits, secret scanning, and production HTTP smoke checks on Sep 7, 2026; all executable gates passed, with the separate development-toolchain advisory follow-up recorded above.
 - [x] Confirmed the HackQuest-displayed submission window: Sep 14, 2026 01:01 through Oct 4, 2026 23:59 (observed in Asia/Shanghai).
 - [x] Reviewed all 14 pages of the official Singapore terms for eligibility, originality, IP, publicity, data sharing, prize, and milestone obligations; see `docs/terms-risk-review.md`.
 - [x] Sent the organizer a clarification request on Aug 31, 2026 covering existing-project eligibility, the Oct 1 versus Oct 4 deadline conflict, and disclosed AI-agent assistance.
