@@ -44,10 +44,11 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
 - [x] Reviewed all 14 pages of the official Singapore terms for eligibility, originality, IP, publicity, data sharing, prize, and milestone obligations; see `docs/terms-risk-review.md`.
 - [x] Sent the organizer a clarification request on Aug 31, 2026 covering existing-project eligibility, the Oct 1 versus Oct 4 deadline conflict, and disclosed AI-agent assistance.
 - [ ] Obtain and record the organizer's written resolution; operate to Oct 1 unless written clarification says otherwise.
-- [ ] Preserve the pre-event baseline and complete more-than-trivial development during the official Buildathon window.
+- [x] Preserve the pre-event baseline in the standalone public repository and tag.
+- [ ] Complete more-than-trivial development during the official Buildathon window.
 - [ ] Reconcile every field against `docs/submission-field-map.md`, including location, prize track, deployment details, and AI-assistance disclosure.
 - [x] Owner confirmed `zedili` and `zdl` are the same person and that the other historical project-team contributors authorized submission use.
-- [ ] Replace the live HackQuest **Progress During Hackathon** field with the truthful pre-window baseline text in `docs/submission-field-map.md`; obtain owner confirmation immediately before saving the public edit.
+- [x] Replaced and publicly verified the live HackQuest **Progress During Hackathon** field with the truthful pre-window baseline text in `docs/submission-field-map.md` on Sep 7, 2026 after owner confirmation.
 - [ ] Replace the inherited hero and icon assets during the official event window and record complete provenance; see `docs/ip-provenance-review.md`.
 - [ ] Resolve final media rights and repository licensing questions in `docs/ip-provenance-review.md`.
 - [ ] Complete a full-slide visual and source audit of the final pitch deck and videos after the in-window update.

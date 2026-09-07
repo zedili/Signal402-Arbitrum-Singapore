@@ -33,7 +33,7 @@ the deadline, but do not rely on that as a recovery strategy.
 | Demo video | HackQuest Demo Video field and repository copy | Ready; update after in-window work |
 | Pitch video | HackQuest Pitch Video field and repository copy | Ready; update after in-window work |
 | Description | `docs/submission-copy.md` | Ready; refresh after in-window work |
-| Progress During Hackathon | Post-baseline changelog only | Public field requires a pre-window correction; final value pending official window |
+| Progress During Hackathon | Post-baseline changelog only | Truthful pre-window correction publicly verified Sep 7; replace with verified in-window changelog before submission |
 | Team | Solo founder and full-stack builder, supported by AI development agents | Ready |
 | Team role | Founder / Full-stack builder | Ready |
 | Wallet | `0x0573f139d21fb3140155567Cba7630d3948F4ea3` | Connected; re-check ownership and network |
@@ -76,7 +76,8 @@ the following text was appended to the public project description and verified
 on Sep 7, 2026:
 
 > Signal402 builds on the earlier X402AiPolyMarket prototype. We thank the early
-> project-team contributors whose work is preserved in the Git history,
+> project-team contributors whose work is preserved in the imported baseline
+> and the original repository history,
 > including `wuyangfan`, `123skkda`, and `zhaohaisen`. They contributed to the
 > pre-event foundation and are not members of this solo Buildathon entry.
 

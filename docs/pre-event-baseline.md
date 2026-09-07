@@ -5,7 +5,21 @@ House Singapore Buildathon from qualifying implementation completed during the
 official event window. Never describe a pre-event item as “built during the
 Buildathon.”
 
-## Immutable public reference
+## Standalone immutable public reference
+
+- Repository: https://github.com/zedili/Signal402-Arbitrum-Singapore
+- Tag: `arbitrum-singapore-pre-event-2026-09-07`
+- Commit: `20a4d0d2b07ef33be5d6246d112e8d5eff687e20`
+- Tree: `326a47024de0e47773950869cb6269e39bbc6826`
+- Recorded: Sep 7, 2026, before the Sep 14 official start
+- Public tag status: pushed to `origin` on Sep 7, 2026 after owner approval
+- Annotated tag object: `7f585ad238d9736552c31bdde427a0ee12d9caf5`
+
+The standalone tag points to the imported product tree plus the event-specific
+repository and provenance documentation. It is the primary before/after
+reference for the final Buildathon submission.
+
+## Original source reference
 
 - Tag: `arbitrum-singapore-pre-event-2026-08-31`
 - Commit: `ea31aae7d177644c8a42dcceddde133df5e16a0d`
@@ -14,7 +28,7 @@ Buildathon.”
 - Public tag status: pushed to `origin` on Aug 31, 2026 after owner approval
 - Annotated tag object: `91a420b9d3eddac40689198a9da6eaee7ea27bec`
 
-The baseline tag points to the complete repository state, including product
+The original baseline tag points to the complete source-repository state, including product
 code, tests, videos, judging material, and the terms/workplan review available
 at the time it was created.
 
@@ -49,7 +63,7 @@ not the evidence for more-than-trivial in-window development.
 
 ## Pre-event public deployment state
 
-At baseline creation, `origin/main` was
+In the original source repository, `origin/main` was
 `ab6e455e835396e4f88798a95ca259818cf3710d`. The owner subsequently approved
 the public push of the baseline tag and preparation commits. As of the final
 Aug 31 pre-event audit, commits after the tag changed only documentation; they
@@ -60,7 +74,7 @@ not the moving `main` branch, as the before/after comparison point.
 
 After Sep 14, 2026:
 
-1. Start all implementation from this baseline tag.
+1. Start all implementation from the standalone Sep 7 baseline tag.
 2. Keep qualifying code, test, deployment, and evidence commits inside the
    official window.
 3. Maintain `docs/progress-during-buildathon.md` as a commit-linked changelog.
