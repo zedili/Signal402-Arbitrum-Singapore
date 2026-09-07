@@ -24,7 +24,8 @@ full-stack builder (`zedili` / `zdl`), supported by AI development agents.
 
 Signal402 builds on the earlier X402AiPolyMarket prototype. We gratefully
 acknowledge the early project-team contributors whose work is preserved in the
-Git history, including `wuyangfan`, `123skkda`, and `zhaohaisen`. This
+imported baseline and the original repository history, including `wuyangfan`,
+`123skkda`, and `zhaohaisen`. This
 acknowledgment recognizes the pre-existing project baseline; it does not list
 historical contributors as current Buildathon team members.
 
