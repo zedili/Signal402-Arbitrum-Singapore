@@ -84,6 +84,9 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
   slice in `docs/implementation-map.md`; explain deliberate deviations and
   preserve the final pre-event HEAD plus tag-to-final diff.
 - [ ] Replace all pre-event draft markers and split baseline accomplishments from verified in-window accomplishments across README, submission copy, judge Q&A, deck, videos, and HackQuest fields.
+- [ ] Generate and review `evidence/buildathon/claim-ledger.json` against
+  `docs/judging-readiness.md`; every factual final claim must be
+  `baseline_verified` or `in_window_verified`, with unsupported claims removed.
 - [ ] Reconcile every field against `docs/submission-field-map.md`, including location, prize track, deployment details, and AI-assistance disclosure.
 - [x] Owner confirmed `zedili` and `zdl` are the same person and that the other historical project-team contributors authorized submission use.
 - [x] Replaced and publicly verified the live HackQuest **Progress During Hackathon** field with the truthful pre-window baseline text in `docs/submission-field-map.md` on Sep 7, 2026 after owner confirmation.

@@ -199,7 +199,7 @@ hide a failure introduced by an earlier one.
 | 10 | evaluation harness and reviewed aggregate artifacts | denominators, failed runs, environment/dependency manifest, threshold results |
 | 11 | provenance-clean visual refresh and judge flow | asset ledger/hashes, responsive screenshots, accessibility and full demo smoke |
 | 12 | deployment and owner-approved testnet evidence | deployment ID/commit, live 402, one payment, optional one attestation, independent receipt checks |
-| 13 | final README, deck, videos, submission copy | claim-to-evidence audit, field map reconciliation, secret scan, clean checkout verification |
+| 13 | final README, deck, videos, submission copy | `claim-ledger.json`, claim-to-evidence audit, field map reconciliation, secret scan, clean checkout verification |
 
 Slices may be split further. Do not squash or rewrite the evidence history. Log
 every substantive commit and its tests in `docs/progress-during-buildathon.md`.
