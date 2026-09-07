@@ -41,7 +41,9 @@ flowchart LR
     A[Agent client] -->|unpaid request| B[Versioned report endpoint]
     B -->|402 terms| A
     A -->|wallet-authorized retry| B
-    B --> C[x402 verification]
+    B --> L[Durable idempotency claim]
+    L -->|one active attempt| C[x402 verification]
+    L -->|settled exact replay| A
     C --> D[Fresh source snapshot]
     D --> E[Structured model generation]
     E --> F[Schema validation]
@@ -84,7 +86,11 @@ the official window.
 | --- | --- | --- |
 | Payment required | Return one valid x402 v2 requirement | No prompt until the client chooses to continue |
 | Authorization pending | Perform no provider work and no settlement | Show exact testnet, asset, amount, and recipient |
-| Payment verified | Refresh the source and generate the report | No second authorization for the same request |
+| Payment verified | Atomically claim the purchase and request fingerprint before refreshing the source | No second authorization for the same request |
+| Matching attempt in progress | Return a typed retry-later result; do not duplicate provider or settlement work | Reuse the same purchase key and signed credential after backoff |
+| Matching settled replay | Return stored exact body bytes plus the stored standard receipt header | Do not sign again |
+| Replay mismatch | Reject before provider work or settlement | Require a deliberate new purchase, key, and explicit authorization |
+| Settlement outcome unknown | Reconcile authoritative chain/facilitator state or stop safely | Check status; never auto-sign a fresh authorization |
 | Provider or validation failure | Cancel the verified payment path and return a typed failure | Show that no settlement receipt exists |
 | Report delivered | Return the validated JSON body unchanged and the settlement receipt in `PAYMENT-RESPONSE` | Validate both channels, compose the display object locally, and link the Arbitrum Sepolia transaction |
 | Attestation offered | Return deterministic call data and canonical registry details; omit the not-yet-created attestation ID | Require a separate, explicit wallet confirmation |
@@ -96,7 +102,10 @@ the official window.
   candidate in `docs/canonical-proof-wireframe.md` before writing hash code;
   record any incompatible revision under a new schema/domain version.
 - Decide whether a request identifier is random, content-derived, or both.
-- Define idempotency and replay behavior for paid retries.
+- Validate and implement the durable state machine in
+  `docs/x402-idempotency-replay-wireframe.md`. Keep the distinction between
+  EIP-3009 nonce replay protection, application idempotency, and the
+  settlement-to-store recovery gap explicit.
 - Define typed failures for market refresh, provider output, parsing, schema
   validation, verification, settlement, and optional attestation.
 - Keep authoritative settlement fields in `PAYMENT-RESPONSE`; define the exact
@@ -112,8 +121,9 @@ the official window.
 
 1. A commit-linked versioned endpoint and public schema documentation.
 2. Tests for the unpaid 402 response, paid retry, stable hashes, changed-content
-   hashes, idempotency, exact response-body preservation, standard receipt
-   header validation, and every pre-settlement failure path.
+   hashes, sequential and concurrent idempotency, replay mismatches, ambiguous
+   settlement, exact response-body preservation, standard receipt header
+   validation, and every pre-settlement failure path.
 3. A minimal agent client that demonstrates authorization without embedding a
    funded private key.
 4. One owner-approved Arbitrum Sepolia purchase receipt created in-window.

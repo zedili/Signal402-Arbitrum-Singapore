@@ -22,6 +22,11 @@ Use this file as the final pre-submit gate for the Arbitrum Open House Singapore
 - [ ] Verify that the semantic `contentHash` excludes payment and attestation
   metadata, while the unchanged response body and authoritative
   `PAYMENT-RESPONSE` header are independently validated.
+- [ ] Implement the durable paid-retry state machine in
+  `docs/x402-idempotency-replay-wireframe.md`; prove concurrent replay creates
+  at most one provider call and one settlement attempt, prove settled replay
+  returns stored bytes/receipt without a new transfer, and retain an honest
+  `outcome_unknown` stop state wherever reconciliation is not proven.
 
 ## Judge materials
 

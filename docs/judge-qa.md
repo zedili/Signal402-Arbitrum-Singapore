@@ -77,6 +77,18 @@ settles only after the market refresh, provider call, JSON parsing, and schema
 validation succeed. A tested provider-failure path returns an error without
 calling settlement.
 
+### Can a network retry charge twice?
+
+The same EIP-3009 authorization nonce cannot transfer twice onchain, but that
+alone does not make a logical API purchase idempotent: a newly signed
+authorization has a new nonce. The baseline client performs one paid retry and
+does not register an automatic recovery hook, but it does not yet provide
+durable cross-instance replay recovery. The in-window design binds one client
+purchase key and exact payment credential to a server-derived request
+fingerprint, serializes provider and settlement work, and refuses to request a
+fresh authorization after an ambiguous result. Replace this answer with test
+and deployment evidence before claiming the design is complete.
+
 ### Is the registry part of the payment path?
 
 No. `Signal402Registry` is a deliberately small, optional hash-attestation

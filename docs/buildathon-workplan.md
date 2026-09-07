@@ -36,6 +36,12 @@ machine client, and creates measurable reliability evidence.
 - Add a documented versioned endpoint for purchasing a report by market ID.
 - Return the standard x402 v2 payment requirement to an unpaid client.
 - Preserve the existing rule that provider or schema failure cancels settlement.
+- Add durable application idempotency for paid retries. Bind a client purchase
+  key and the exact payment credential to a server-derived request fingerprint,
+  serialize concurrent attempts before provider work, and never request a fresh
+  authorization automatically after an ambiguous result. Follow
+  `docs/x402-idempotency-replay-wireframe.md`; do not claim generic exactly-once
+  delivery unless the settlement-to-store recovery gap is proven.
 - Return a versioned JSON envelope containing the source snapshot, structured
   analysis, generation metadata, expected payment context, receipt-channel
   metadata, and hash fields. Keep the authoritative settlement result in the
@@ -78,6 +84,10 @@ machine client, and creates measurable reliability evidence.
 - Prove the response bytes supplied to settlement are the same bytes delivered
   to the caller, and reject a missing, malformed, failed, or network-mismatched
   `PAYMENT-RESPONSE` header in the reference client.
+- Prove sequential and concurrent replay behavior across every idempotency
+  state: matching settled requests return stored bytes and receipt without new
+  work, mismatches fail before provider/settlement, and ambiguous settlement
+  never triggers a new wallet authorization.
 - Verify canonical hashes are stable across key-order differences and change
   when covered report content changes. Commit cross-runtime byte-and-hash test
   vectors, including Unicode, number, invalid-input, and array-order cases.
@@ -117,6 +127,9 @@ machine client, and creates measurable reliability evidence.
   toolchain for an owner-approved transaction. Do not claim that all
   dependencies are vulnerability-free while those advisories remain.
 - A fresh production smoke test returns live market data and a valid unpaid 402.
+- The production paid endpoint uses a durable atomic replay store; an in-memory
+  adapter is test-only. Store selection, external connection, and production
+  secret configuration have owner approval.
 - At least one new paid agent-client request settles on Arbitrum Sepolia.
 - At least one optional report hash is attested through the canonical registry.
 - Every public claim has a URL, transaction, test, or reproducible command as
