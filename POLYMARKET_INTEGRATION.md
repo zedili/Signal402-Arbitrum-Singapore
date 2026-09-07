@@ -1,5 +1,14 @@
 # Polymarket 接入文档
 
+> [!WARNING]
+> **历史赛前设计资料，不是 Signal402 当前架构，也不能用于部署。** 本文仍包含
+> 早期 Solana 支付设想和一个会直接返回 `true` 的伪验证器。当前参赛产品使用
+> Next.js 服务端路由、Arbitrum Sepolia、x402 v2 官方包与 facilitator 验证，
+> 并在模型或验证失败时不结算。活动实现与边界请以根目录 `README.md`、
+> `front-end/src/lib/x402/server.ts` 和 `front-end/app/api/analysis/route.ts` 为准。
+
+本文不得作为安全实现指南、当前功能声明或 Buildathon 赛内成果引用。
+
 本文档详细介绍了如何将 Polymarket API 与 X402 支付协议集成到项目中。
 
 ## 目录

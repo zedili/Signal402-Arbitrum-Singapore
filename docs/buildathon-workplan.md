@@ -105,7 +105,9 @@ machine client, and creates measurable reliability evidence.
 
 1. **Sep 14:** verify the immutable baseline tag, record the final pre-event
    `main` head, re-check terms, confirm the submission portal is open, and
-   repeat the dependency audit before selecting a Hardhat upgrade path.
+   repeat the dependency audit before selecting a Hardhat upgrade path. Apply
+   the legacy-surface cleanup gate in `docs/active-surface-audit.md` without
+   presenting cleanup as the substantive feature.
 2. **Sep 14–18:** implement the versioned API and canonical proof bundle.
 3. **Sep 19–22:** integrate optional registry attestation and the reference
    client.

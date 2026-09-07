@@ -1,5 +1,11 @@
 # PolyMarket 后端服务
 
+> [!WARNING]
+> 这是从原项目保留的未部署 Go 原型，不是 Signal402 当前生产后端。活动生产面
+> 位于 `front-end/app/api`；本目录的旧交易路由、配置和 Solana 中间件不得部署
+> 或用于证明当前 x402 支付能力。旧支付验证器默认失败关闭，示例路由通过
+> `//go:build ignore` 排除。
+
 X402AiPolyMarket 项目的后端服务，基于 go-zero 微服务框架构建。
 
 ## 🚀 快速开始
