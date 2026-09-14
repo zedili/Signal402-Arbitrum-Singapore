@@ -1,6 +1,6 @@
 # Signal402 progress during the Buildathon
 
-Status: **Pre-event — no qualifying implementation work has started.**
+Status: **Buildathon window verified open — engineering baseline in progress.**
 
 This ledger must contain only work performed during the official Arbitrum Open
 House Singapore Buildathon implementation window. Pre-existing functionality
@@ -18,11 +18,20 @@ is documented in `docs/pre-event-baseline.md` and must not be claimed here.
 
 Complete this section at or after the official start and before implementation:
 
-- Start verified at (UTC+8): _pending_
-- Official source used to verify start: _pending_
-- Final pre-event `main` commit: _pending_
-- Terms document URL and SHA-256: _pending re-check_
-- Submission portal state: _pending re-check_
+- Start verified at (UTC+8): September 14, 2026, 09:08 UTC+8
+- Official source used to verify start: HackQuest event page displayed the active
+  `Start Submit` control and the project page displayed `Submit to Arbitrum Open
+  House Singapore: Online Buildathon`.
+- Final pre-event `main` commit: `4dd52eb255bebf1496cf0b1d43a79e8b96278d8c`
+- Terms document URL and SHA-256:
+  `https://openhouse.arbitrum.io/singapore_version_open_house_buildathon_terms___conditions.pdf`;
+  SHA-256 unavailable because Chrome rendered the same 14-page document but its
+  normal download control did not produce an accessible file, while a direct
+  fetch reached a Vercel security checkpoint. The checkpoint was not bypassed.
+- Submission portal state: open; Signal402 remained `100 Ready To Submit` and
+  exposed the event-specific submit route. No submission was made.
+- Official-page capture reference: ephemeral browser capture observed at
+  September 14, 2026, 09:08 UTC+8; no account or personal data was retained.
 
 ## Qualifying work log
 
