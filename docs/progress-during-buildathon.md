@@ -50,7 +50,7 @@ the strongest available test, deployment, or transaction evidence.
 
 | Date/time (UTC+8) | Commit | Qualifying change | Verification evidence | AI assistance |
 | --- | --- | --- | --- | --- |
-| _pending_ | _pending_ | _pending_ | _pending_ | _pending_ |
+| Sep 14, 09:34 | `cd2e0ae701d8fb7935e995240ae883d8aeb65809` | Added strict, environment-independent Zod contracts for the v1 request, normalized report, proof/payment boundary, and the complete RFC 9457 problem taxonomy. Cross-field checks reject mismatched market IDs and registry hash arguments; the problem contract binds every stable code to its HTTP status, machine action, and allowed payment state. | 54 new contract assertions passed, including one complete report fixture, every problem-code mapping, strict unknown-field rejection, normalization/range/time/hash failures, and HTTP/body-status mismatch; full frontend total 57/57, TypeScript check, production build, 163-file secret scan, and production audit passed. | Implemented with Codex; invariants and fixtures were derived from the pre-event wireframes and reviewed through deterministic tests. |
 
 ## Deployments and runtime evidence
 
