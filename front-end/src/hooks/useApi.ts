@@ -2,7 +2,11 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import type { ApiError } from '@/lib/api';
+
+type ApiError = Error & {
+  code?: number;
+  data?: unknown;
+};
 
 interface UseApiOptions {
   onSuccess?: (data: any) => void;
