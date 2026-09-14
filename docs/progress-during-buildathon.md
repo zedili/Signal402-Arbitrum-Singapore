@@ -33,6 +33,15 @@ Complete this section at or after the official start and before implementation:
 - Official-page capture reference: ephemeral browser capture observed at
   September 14, 2026, 09:08 UTC+8; no account or personal data was retained.
 
+## Engineering baseline and maintenance log
+
+| Date/time (UTC+8) | Change or observation | Verification |
+| --- | --- | --- |
+| Sep 14, 09:12-09:15 | Baseline toolchain captured: Node 24.15.0, pnpm command 10.33.1 (project Corepack pnpm 10.4.1), npm 11.12.1, Go 1.26.2, Git 2.53.0.windows.3, Windows 10 IoT Enterprise LTSC build 19044 | Frontend 3/3 baseline tests, TypeScript check, production build, contract 3/3 tests, Go `./...`, and 316-file secret scan passed |
+| Sep 14, 09:13 | The production audit detected `sharp@0.35.0` under Next.js as affected by `GHSA-rgj7-g3m4-5g8c`; this was a newly published advisory discovered before feature work | Baseline production audit failed with one high-severity advisory |
+| Sep 14, 09:16 | Updated the existing `next>sharp` override to the patched `0.35.4`; this is maintenance and is not claimed as the substantive Buildathon feature | Frozen install passed; production audit reported no known vulnerabilities; 3/3 baseline tests, TypeScript check, production build, and secret scan passed |
+| Sep 14, 09:14 | Contract production audit remained clean. The full development audit reported 37 toolchain findings (14 low, 7 moderate, 16 high), so no Hardhat transaction is authorized or claimed from this baseline | Production audit: 0; `Signal402Registry`: 3/3 tests passed |
+
 ## Qualifying work log
 
 Add one row for every substantive, in-window change. Link the exact commit and
