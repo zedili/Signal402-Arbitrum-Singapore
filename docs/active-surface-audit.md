@@ -1,6 +1,7 @@
 # Signal402 active submission surface audit
 
-Status: **pre-event audit; no legacy removal is claimed as Buildathon work.**
+Status: **Sep 14 cleanup completed in `36cea75`; this maintenance is not claimed
+as the substantive Buildathon feature.**
 
 This audit distinguishes the deployed Signal402 product from inherited source
 that remains in the immutable baseline. It protects the information-only claim
@@ -31,12 +32,11 @@ contract job.
 
 | Surface | Evidence that it is inactive | Final-submission treatment |
 | --- | --- | --- |
-| Go trading, portfolio, admin, auth, and market prototype | The Vercel product deploys the Next.js app; no active Next route proxies these Go endpoints | Do not deploy. Remove or move out of the final working tree during the official window if the agent feature does not require it; preserve history through the baseline tag |
-| `back-end/PolyMarket/internal/middleware/x402.go` | `routes.go` never registers `X402Middleware`; its verifier returns `false` | Keep fail-closed until removal. Never cite it as the active x402 implementation |
-| `back-end/PolyMarket/internal/handler/routes_example.go` | `//go:build ignore` excludes it from builds | Treat only as an inherited example and remove with the legacy Go surface if practical |
-| Dormant React trading, order, position, wallet-dashboard, and admin components | Static import search found no imports from tracked `app` route entry points | Do not expose or demo. Remove during the official window if cleanly separable |
-| `contracts/contracts/Lock.sol`, `InsightToken.sol`, and ` RewardPool.sol` | Hardhat sources are restricted to `contracts/src` | Remove from the final working tree; do not claim review, safety, deployment, or token economics |
-| `X402_INTEGRATION.md` and `POLYMARKET_INTEGRATION.md` | Both describe historical Solana/mock ideas and contain non-production pseudocode | Warning banners added pre-event; remove or archive after the official start |
+| Go trading, portfolio, admin, auth, and market prototype | The Vercel product deploys the Next.js app; no active Next route proxies these Go endpoints | Removed from the working tree in `36cea75`; preserved in the immutable baseline tag |
+| Legacy Go x402 middleware and ignored routes example | The router never registered the middleware; the example had `//go:build ignore` | Removed with the Go prototype in `36cea75`; never cite it as the active x402 implementation |
+| Dormant React trading, order, position, wallet-dashboard, admin, mock-data, and obsolete API surfaces | Static import search found no imports from tracked `app` route entry points | Removed in `36cea75`; the active market client was reduced to read-only list/detail calls |
+| `contracts/contracts/Lock.sol`, `InsightToken.sol`, and ` RewardPool.sol` | Hardhat sources are restricted to `contracts/src` | Removed in `36cea75`; only `contracts/src/Signal402Registry.sol` remains in the contract source surface |
+| `X402_INTEGRATION.md` and `POLYMARKET_INTEGRATION.md` | Both described historical Solana/mock ideas and contained non-production pseudocode | Removed in `36cea75`; preserved in the immutable baseline tag |
 
 ## Claim controls
 
@@ -64,3 +64,15 @@ recorded:
    gate before cleanup and again afterward if any Go module remains.
 4. Record the cleanup commit separately from the substantive agent feature.
 5. Re-run the active-route and secret scans from a clean checkout.
+
+Completed Sep 14, 2026 at commit `36cea75a1ef78e8c25f7a3f8fe016361f69807be`:
+
+- the planned agent protocol needs none of the removed Go, trading, mock,
+  wallet-dashboard, token-economics, or historical integration surfaces;
+- the removal deleted 159 tracked files and retained the active Next.js market,
+  report-payment, wallet-authorization, and registry sources;
+- `typeit` and its unused component were removed, resolving the identified GPL
+  distribution gate; the obsolete Axios/auth client was also removed;
+- the legacy symbol scan and Go-module scan returned no matches;
+- the 163-file secret scan, production dependency audit, 3/3 frontend baseline
+  tests, TypeScript check, production build, and 3/3 registry tests passed.

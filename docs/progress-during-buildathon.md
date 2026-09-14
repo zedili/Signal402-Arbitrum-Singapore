@@ -41,6 +41,7 @@ Complete this section at or after the official start and before implementation:
 | Sep 14, 09:13 | The production audit detected `sharp@0.35.0` under Next.js as affected by `GHSA-rgj7-g3m4-5g8c`; this was a newly published advisory discovered before feature work | Baseline production audit failed with one high-severity advisory |
 | Sep 14, 09:16 | Updated the existing `next>sharp` override to the patched `0.35.4`; this is maintenance and is not claimed as the substantive Buildathon feature | Frozen install passed; production audit reported no known vulnerabilities; 3/3 baseline tests, TypeScript check, production build, and secret scan passed |
 | Sep 14, 09:14 | Contract production audit remained clean. The full development audit reported 37 toolchain findings (14 low, 7 moderate, 16 high), so no Hardhat transaction is authorized or claimed from this baseline | Production audit: 0; `Signal402Registry`: 3/3 tests passed |
+| Sep 14, 09:28 | Removed the inactive Go, trading, wallet-dashboard, mock-data, legacy API, obsolete integration-document, and non-submitted contract surfaces in `36cea75a1ef78e8c25f7a3f8fe016361f69807be`; this cleanup is not counted as the substantive feature | Legacy symbol and Go-module scans returned no matches; 163-file secret scan, production audit, 3/3 baseline tests, TypeScript check, production build, and 3/3 registry tests passed |
 
 ## Qualifying work log
 
