@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  deriveCredentialDigest,
+  derivePurchaseKey,
   deriveRequestFingerprint,
   normalizePositiveMarketId,
 } from "./request-identity";
@@ -63,5 +65,42 @@ describe("deriveRequestFingerprint", () => {
     expect(() =>
       deriveRequestFingerprint("123456", termsWithUnknownMember),
     ).toThrow();
+  });
+});
+
+describe("private purchase identity digests", () => {
+  it("matches frozen SHA-256 fixtures without retaining raw values", () => {
+    expect(derivePurchaseKey("fixture-idempotency-key-0001")).toBe(
+      "0x07ac9cb08fd123e50f89b02d3f51cf16ef5e6e4308570da4ee6ee7ebb3528a1a",
+    );
+    expect(
+      deriveCredentialDigest(
+        new TextEncoder().encode("fixture-payment-header"),
+      ),
+    ).toBe(
+      "0xe459384f398dcbe8200ba75ce9c7a84fd98a34f73d23019496d1ef73812b0486",
+    );
+  });
+
+  it("changes with any raw identity change", () => {
+    expect(derivePurchaseKey("fixture-idempotency-key-0001")).not.toBe(
+      derivePurchaseKey("fixture-idempotency-key-0002"),
+    );
+    expect(deriveCredentialDigest(new Uint8Array([1]))).not.toBe(
+      deriveCredentialDigest(new Uint8Array([2])),
+    );
+  });
+
+  it("rejects empty, control-bearing, oversized, and short identity material", () => {
+    for (const value of [
+      "",
+      "too-short",
+      "valid-length-key\n",
+      "x".repeat(257),
+    ]) {
+      expect(() => derivePurchaseKey(value)).toThrow();
+    }
+    expect(() => deriveCredentialDigest(new Uint8Array())).toThrow();
+    expect(() => deriveCredentialDigest(new Uint8Array(16_385))).toThrow();
   });
 });

@@ -1,10 +1,11 @@
-import { keccak256 } from "viem";
+import { keccak256, sha256 } from "viem";
 import { z } from "zod";
 
 import { canonicalizeJcsBytes } from "./canonical-proof";
 
 const encoder = new TextEncoder();
 const REQUEST_DOMAIN = "signal402:paid-request:v1\n";
+const PURCHASE_KEY_DOMAIN = "signal402:purchase-key:v1\n";
 
 export const requestPaymentTermsSchema = z.strictObject({
   network: z.string().min(1),
@@ -48,3 +49,29 @@ export function deriveRequestFingerprint(
 }
 
 export const requestIdentityDomain = REQUEST_DOMAIN;
+
+export function derivePurchaseKey(idempotencyKey: string) {
+  if (
+    idempotencyKey.length < 16 ||
+    idempotencyKey.length > 256 ||
+    /[\u0000-\u001f\u007f]/.test(idempotencyKey)
+  ) {
+    throw new TypeError(
+      "Idempotency key must be a bounded, high-entropy printable value",
+    );
+  }
+  return sha256(encoder.encode(PURCHASE_KEY_DOMAIN + idempotencyKey));
+}
+
+export function deriveCredentialDigest(paymentHeaderBytes: Uint8Array) {
+  if (
+    !(paymentHeaderBytes instanceof Uint8Array) ||
+    paymentHeaderBytes.length === 0 ||
+    paymentHeaderBytes.length > 16_384
+  ) {
+    throw new TypeError("Payment header bytes must be non-empty and bounded");
+  }
+  return sha256(paymentHeaderBytes);
+}
+
+export const purchaseKeyDomain = PURCHASE_KEY_DOMAIN;
