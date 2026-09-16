@@ -12,15 +12,15 @@ current functionality.
 
 The Sep 7, 2026 production build exposes these Next.js routes:
 
-| Route | Purpose | Active evidence |
-| --- | --- | --- |
-| `/` | Signal402 product overview and live-market entry | Production HTTP 200 |
-| `/markets` | Live normalized Polymarket list | Next.js build and production data check |
-| `/markets/[id]` | Market detail and paid-report UI | Next.js build and live route behavior |
-| `/api/markets` | Server-normalized market list | Imported by the active market page |
-| `/api/markets/[id]` | Server-normalized market detail | Imported by the active detail page |
-| `/api/analysis` | Current human-facing x402 paid report | Unpaid 402 and two prior Sepolia settlement receipts |
-| `/api/analysis/status` | Server-side provider readiness | Production response `{"ready":true}` on Sep 7 |
+| Route                  | Purpose                                          | Active evidence                                      |
+| ---------------------- | ------------------------------------------------ | ---------------------------------------------------- |
+| `/`                    | Signal402 product overview and live-market entry | Production HTTP 200                                  |
+| `/markets`             | Live normalized Polymarket list                  | Next.js build and production data check              |
+| `/markets/[id]`        | Market detail and paid-report UI                 | Next.js build and live route behavior                |
+| `/api/markets`         | Server-normalized market list                    | Imported by the active market page                   |
+| `/api/markets/[id]`    | Server-normalized market detail                  | Imported by the active detail page                   |
+| `/api/analysis`        | Current human-facing x402 paid report            | Unpaid 402 and two prior Sepolia settlement receipts |
+| `/api/analysis/status` | Server-side provider readiness                   | Production response `{"ready":true}` on Sep 7        |
 
 The active contract surface is only
 `contracts/src/Signal402Registry.sol`. `contracts/hardhat.config.ts` explicitly
@@ -28,15 +28,33 @@ sets `sources` to `./src` and tests to `./test-active`, so the legacy contracts
 under `contracts/contracts` are neither compiled nor tested by the Buildathon
 contract job.
 
+## Sep 16 local route retirement (not deployed)
+
+Local commit work after the immutable baseline now exposes
+`POST /api/v1/reports` as the only future paid-report route. Its HTTP boundary
+rejects malformed, duplicate-member, non-JSON, and oversized requests before
+the resource handler. Until an owner-approved durable replay store is wired,
+the route returns a typed `503 replay_store_unavailable` without presenting
+payment terms.
+
+The local `/api/analysis` route and readiness endpoint are retired with unpaid
+typed `410` responses. The former settlement wrapper
+`front-end/src/lib/x402/server.ts` has been removed. A production-source scan
+and route tests prove there is no remaining `handlePaidAnalysis`,
+`processSettlement`, or `x402HTTPResourceServer` implementation outside the
+frozen pre-event protocol regression test. These local changes have not been
+pushed or deployed; the live production surface described above remains the
+Sep 7 baseline until separately approved.
+
 ## Inherited inactive surface
 
-| Surface | Evidence that it is inactive | Final-submission treatment |
-| --- | --- | --- |
-| Go trading, portfolio, admin, auth, and market prototype | The Vercel product deploys the Next.js app; no active Next route proxies these Go endpoints | Removed from the working tree in `36cea75`; preserved in the immutable baseline tag |
-| Legacy Go x402 middleware and ignored routes example | The router never registered the middleware; the example had `//go:build ignore` | Removed with the Go prototype in `36cea75`; never cite it as the active x402 implementation |
-| Dormant React trading, order, position, wallet-dashboard, admin, mock-data, and obsolete API surfaces | Static import search found no imports from tracked `app` route entry points | Removed in `36cea75`; the active market client was reduced to read-only list/detail calls |
-| `contracts/contracts/Lock.sol`, `InsightToken.sol`, and ` RewardPool.sol` | Hardhat sources are restricted to `contracts/src` | Removed in `36cea75`; only `contracts/src/Signal402Registry.sol` remains in the contract source surface |
-| `X402_INTEGRATION.md` and `POLYMARKET_INTEGRATION.md` | Both described historical Solana/mock ideas and contained non-production pseudocode | Removed in `36cea75`; preserved in the immutable baseline tag |
+| Surface                                                                                               | Evidence that it is inactive                                                                | Final-submission treatment                                                                              |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Go trading, portfolio, admin, auth, and market prototype                                              | The Vercel product deploys the Next.js app; no active Next route proxies these Go endpoints | Removed from the working tree in `36cea75`; preserved in the immutable baseline tag                     |
+| Legacy Go x402 middleware and ignored routes example                                                  | The router never registered the middleware; the example had `//go:build ignore`             | Removed with the Go prototype in `36cea75`; never cite it as the active x402 implementation             |
+| Dormant React trading, order, position, wallet-dashboard, admin, mock-data, and obsolete API surfaces | Static import search found no imports from tracked `app` route entry points                 | Removed in `36cea75`; the active market client was reduced to read-only list/detail calls               |
+| `contracts/contracts/Lock.sol`, `InsightToken.sol`, and ` RewardPool.sol`                             | Hardhat sources are restricted to `contracts/src`                                           | Removed in `36cea75`; only `contracts/src/Signal402Registry.sol` remains in the contract source surface |
+| `X402_INTEGRATION.md` and `POLYMARKET_INTEGRATION.md`                                                 | Both described historical Solana/mock ideas and contained non-production pseudocode         | Removed in `36cea75`; preserved in the immutable baseline tag                                           |
 
 ## Claim controls
 

@@ -250,6 +250,7 @@ stable, and testable:
 | `invalid_json`                  |  400 | `not_present`                         | `fix_request_without_payment`          | Must occur before verification                                                                          |
 | `invalid_market_id`             |  422 | `not_present`                         | `fix_request_without_payment`          | Must occur before verification                                                                          |
 | `invalid_idempotency_key`       |  400 | `not_present`                         | `fix_request_without_payment`          | Must occur before verification or payment presentation                                                  |
+| `legacy_endpoint_retired`       |  410 | `not_present`                         | `stop`                                 | Unpaid terminal response; clients must deliberately migrate to the versioned resource                   |
 | `market_not_found`              |  404 | `not_present` or `verified_unsettled` | `stop`                                 | Never settle                                                                                            |
 | `unsupported_market_shape`      |  422 | `not_present` or `verified_unsettled` | `stop`                                 | Never silently coerce an unsupported outcome set; never settle                                          |
 | `payment_required`              |  402 | `not_present`                         | `present_payment_terms`                | No authorization exists                                                                                 |
@@ -298,6 +299,8 @@ rules, exit codes, and evidence gates are defined in
 ## Versioning and compatibility
 
 - `/api/v1/reports` and `signal402.report.v1` are breaking-change boundaries.
+- The legacy `/api/analysis` route returns an unpaid typed `410` with a
+  successor link; it never redirects a signed request or invokes settlement.
 - Additive optional fields may be introduced only if strict clients have an
   explicit negotiated schema version; otherwise publish `/api/v2`.
 - Canonical-content and hash-domain versions change independently and must not

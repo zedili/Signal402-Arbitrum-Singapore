@@ -103,6 +103,10 @@ const problemCopy: Record<
     title: "Invalid idempotency key",
     detail: "Send a bounded, high-entropy Idempotency-Key with the request.",
   },
+  legacy_endpoint_retired: {
+    title: "Legacy endpoint retired",
+    detail: "Use the versioned report endpoint for future integrations.",
+  },
   market_not_found: {
     title: "Market not found",
     detail: "The requested market is unavailable.",
@@ -171,7 +175,7 @@ function jsonBytes(value: unknown) {
   return encoder.encode(JSON.stringify(value));
 }
 
-function problemResponse(
+export function createResourceProblemResponse(
   code: ProblemCode,
   paymentState: PaymentState,
   origin: string,
@@ -249,14 +253,14 @@ async function failBeforeSettlement(
     dependencies.nowMs(),
   );
   if (!failed.ok) {
-    return problemResponse(
+    return createResourceProblemResponse(
       failed.code,
       paymentState,
       origin,
       purchaseId(record.purchaseKey),
     );
   }
-  return problemResponse(
+  return createResourceProblemResponse(
     code,
     paymentState,
     origin,
@@ -281,18 +285,22 @@ export function createReportResourceServer(
   ): Promise<ResourceResponse> {
     const marketId = validatedMarketId(request.body);
     if (marketId === "invalid_json" || marketId === "invalid_market_id") {
-      return problemResponse(marketId, "not_present", origin);
+      return createResourceProblemResponse(marketId, "not_present", origin);
     }
 
     let key: Hex;
     try {
       key = derivePurchaseKey(request.idempotencyKey ?? "");
     } catch {
-      return problemResponse("invalid_idempotency_key", "not_present", origin);
+      return createResourceProblemResponse(
+        "invalid_idempotency_key",
+        "not_present",
+        origin,
+      );
     }
 
     if (!request.paymentHeader) {
-      const response = problemResponse(
+      const response = createResourceProblemResponse(
         "payment_required",
         "not_present",
         origin,
@@ -313,7 +321,7 @@ export function createReportResourceServer(
         encoder.encode(request.paymentHeader),
       );
     } catch {
-      return problemResponse(
+      return createResourceProblemResponse(
         "payment_authorization_invalid",
         "unverified",
         origin,
@@ -339,7 +347,12 @@ export function createReportResourceServer(
         code === "stored_receipt_invalid"
           ? "unknown"
           : "unverified";
-      return problemResponse(code, state, origin, purchaseId(key));
+      return createResourceProblemResponse(
+        code,
+        state,
+        origin,
+        purchaseId(key),
+      );
     }
     if (begun.kind === "replay") {
       return successResponse(begun.body, begun.settlementHeader);
@@ -377,7 +390,7 @@ export function createReportResourceServer(
       dependencies.nowMs(),
     );
     if (!processing.ok) {
-      return problemResponse(
+      return createResourceProblemResponse(
         processing.code,
         "verified_unsettled",
         origin,
@@ -412,7 +425,7 @@ export function createReportResourceServer(
       dependencies.nowMs(),
     );
     if (!prepared.ok) {
-      return problemResponse(
+      return createResourceProblemResponse(
         prepared.code,
         "verified_unsettled",
         origin,
@@ -425,7 +438,7 @@ export function createReportResourceServer(
       dependencies.nowMs(),
     );
     if (!settling.ok) {
-      return problemResponse(
+      return createResourceProblemResponse(
         settling.code,
         "verified_unsettled",
         origin,
@@ -451,9 +464,14 @@ export function createReportResourceServer(
         dependencies.nowMs(),
       );
       if (!failed.ok) {
-        return problemResponse(failed.code, "unknown", origin, purchaseId(key));
+        return createResourceProblemResponse(
+          failed.code,
+          "unknown",
+          origin,
+          purchaseId(key),
+        );
       }
-      return problemResponse(
+      return createResourceProblemResponse(
         settlement.outcome === "unknown"
           ? "settlement_outcome_unknown"
           : "settlement_failed_unconsumed",
@@ -470,7 +488,12 @@ export function createReportResourceServer(
       dependencies.nowMs(),
     );
     if (!settled.ok) {
-      return problemResponse(settled.code, "unknown", origin, purchaseId(key));
+      return createResourceProblemResponse(
+        settled.code,
+        "unknown",
+        origin,
+        purchaseId(key),
+      );
     }
     return successResponse(responseBody, settlement.receipt.header);
   };

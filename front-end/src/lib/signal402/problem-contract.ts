@@ -4,6 +4,7 @@ export const problemCodeSchema = z.enum([
   "invalid_json",
   "invalid_market_id",
   "invalid_idempotency_key",
+  "legacy_endpoint_retired",
   "market_not_found",
   "unsupported_market_shape",
   "payment_required",
@@ -65,6 +66,11 @@ export const problemRules = {
     action: "fix_request_without_payment",
     paymentStates: ["not_present"],
   },
+  legacy_endpoint_retired: {
+    status: 410,
+    action: "stop",
+    paymentStates: ["not_present"],
+  },
   market_not_found: {
     status: 404,
     action: "stop",
@@ -118,7 +124,12 @@ export const problemRules = {
   replay_store_unavailable: {
     status: 503,
     action: "retry_same_purchase",
-    paymentStates: ["unverified", "verified_unsettled", "unknown"],
+    paymentStates: [
+      "not_present",
+      "unverified",
+      "verified_unsettled",
+      "unknown",
+    ],
   },
   settlement_failed_unconsumed: {
     status: 502,

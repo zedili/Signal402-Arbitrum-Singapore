@@ -142,7 +142,9 @@ function instructionResponse(instructions: {
   });
 }
 
-describe('Signal402 x402 protocol flow', () => {
+// Frozen pre-event regression coverage for the retired baseline protocol path.
+// These three cases are not counted as in-window Slice 6 assertions.
+describe('pre-event x402 protocol regression', () => {
   let facilitator: MemoryFacilitator;
   let httpServer: x402HTTPResourceServer;
   let resourceFetch: typeof globalThis.fetch;

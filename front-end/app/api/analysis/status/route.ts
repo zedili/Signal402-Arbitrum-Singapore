@@ -1,11 +1,15 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-export const runtime = 'nodejs';
-export const dynamic = 'force-dynamic';
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export function GET() {
   return NextResponse.json(
-    { ready: Boolean(process.env.DEEPSEEK_API_KEY) },
-    { headers: { 'Cache-Control': 'no-store' } },
+    {
+      ready: false,
+      code: "legacy_endpoint_retired",
+      successor: "/api/v1/reports",
+    },
+    { status: 410, headers: { "Cache-Control": "private, no-store" } },
   );
 }

@@ -1,8 +1,8 @@
 # Signal402 in-window implementation map
 
-Status: **pre-event planning only. No file or module listed below exists unless
-it is already present in the baseline. Do not implement these changes before
-the guarded kickoff in `docs/sep14-kickoff-runbook.md`.**
+Status: **Execution in progress. Slices 0-6 are complete in local commits; no
+post-Sep 7 commit is public or deployed. Slice 7 remains blocked on the explicit
+durable-store approval gate below.**
 
 This map turns the Buildathon specifications into small, reviewable commit
 slices. It is intentionally file-specific so the official-window work can start
@@ -13,11 +13,11 @@ route.
 
 The current paid path is concentrated in three places:
 
-| Baseline file | Current responsibility | In-window risk |
-| --- | --- | --- |
-| `front-end/app/api/analysis/route.ts` | request parsing, market fetch, prompt construction, DeepSeek call, model parsing, report response | invalid input can be discovered inside the paid handler; error classes and response bytes are hard to test independently |
-| `front-end/src/lib/x402/server.ts` | x402 route declaration, facilitator initialization, Next adapter, verification, cancellation, settlement, error mapping | global singleton and route-specific wrapper make durable replay/concurrency and fault injection difficult |
-| `front-end/src/lib/x402/protocol.test.ts` | three baseline x402 integration cases | proves the old happy/failure paths only; it does not cover the planned API schema, replay store, concurrency, proof, or reference-client policy |
+| Baseline file                             | Current responsibility                                                                                                  | In-window risk                                                                                                                                  |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `front-end/app/api/analysis/route.ts`     | request parsing, market fetch, prompt construction, DeepSeek call, model parsing, report response                       | invalid input can be discovered inside the paid handler; error classes and response bytes are hard to test independently                        |
+| `front-end/src/lib/x402/server.ts`        | x402 route declaration, facilitator initialization, Next adapter, verification, cancellation, settlement, error mapping | global singleton and route-specific wrapper make durable replay/concurrency and fault injection difficult                                       |
+| `front-end/src/lib/x402/protocol.test.ts` | three baseline x402 integration cases                                                                                   | proves the old happy/failure paths only; it does not cover the planned API schema, replay store, concurrency, proof, or reference-client policy |
 
 `front-end/src/lib/polymarket.ts` also silently supplies Yes/No labels and
 probabilities when the upstream shape is incomplete. The v1 report path must
@@ -186,22 +186,22 @@ URLs, and personal data stay outside the repository.
 Each slice must leave the repository testable. A later slice cannot be used to
 hide a failure introduced by an earlier one.
 
-| Slice | Scope | Required proof before next slice |
-| ---: | --- | --- |
-| 0 | kickoff record only | portal-open evidence, final pre-event HEAD, Terms hash/state, clean baseline commands |
-| 1 | strict request/problem/report schemas | golden and rejection fixtures; typecheck/build green |
-| 2 | canonical request/content proof | published cross-runtime vectors; byte and hash mutation tests |
-| 3 | strict market snapshot and injected report service | no fallback Yes/No; provider/source fault matrix; zero settlement calls in service tests |
-| 4 | replay-store interface and memory conformance suite | every legal/illegal transition; 16-way concurrency; mismatches fail before work |
-| 5 | canonical v1 x402 resource using test store | one paid surface; exact response bytes; settlement/cancellation/problem mapping |
-| 6 | legacy-route retirement or delegation | route inventory and tests prove no second settlement implementation |
-| 7 | owner-approved Postgres adapter and migration | local conformance first, then approved remote atomicity/failure tests and TTL record |
-| 8 | reference client inspect/purchase state machine | zero/one signer-count proofs, frozen retry bytes, redaction and exit-code suite |
-| 9 | UI proof panel and optional attestation flow | code-hash/simulation/event/ID/readback fixtures; wallet rejection and no-resubmit tests |
-| 10 | evaluation harness and reviewed aggregate artifacts | denominators, failed runs, environment/dependency manifest, threshold results |
-| 11 | provenance-clean visual refresh and judge flow | asset ledger/hashes, responsive screenshots, accessibility and full demo smoke |
-| 12 | deployment and owner-approved testnet evidence | deployment ID/commit, live 402, one payment, optional one attestation, independent receipt checks |
-| 13 | final README, deck, videos, submission copy | `claim-ledger.json`, `docs/final-demo-plan.md` acceptance audit, field map reconciliation, secret scan, clean checkout verification |
+| Slice | Scope                                               | Required proof before next slice                                                                                                    |
+| ----: | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+|     0 | kickoff record only                                 | portal-open evidence, final pre-event HEAD, Terms hash/state, clean baseline commands                                               |
+|     1 | strict request/problem/report schemas               | golden and rejection fixtures; typecheck/build green                                                                                |
+|     2 | canonical request/content proof                     | published cross-runtime vectors; byte and hash mutation tests                                                                       |
+|     3 | strict market snapshot and injected report service  | no fallback Yes/No; provider/source fault matrix; zero settlement calls in service tests                                            |
+|     4 | replay-store interface and memory conformance suite | every legal/illegal transition; 16-way concurrency; mismatches fail before work                                                     |
+|     5 | canonical v1 x402 resource using test store         | one paid surface; exact response bytes; settlement/cancellation/problem mapping                                                     |
+|     6 | legacy-route retirement or delegation               | route inventory and tests prove no second settlement implementation                                                                 |
+|     7 | owner-approved Postgres adapter and migration       | local conformance first, then approved remote atomicity/failure tests and TTL record                                                |
+|     8 | reference client inspect/purchase state machine     | zero/one signer-count proofs, frozen retry bytes, redaction and exit-code suite                                                     |
+|     9 | UI proof panel and optional attestation flow        | code-hash/simulation/event/ID/readback fixtures; wallet rejection and no-resubmit tests                                             |
+|    10 | evaluation harness and reviewed aggregate artifacts | denominators, failed runs, environment/dependency manifest, threshold results                                                       |
+|    11 | provenance-clean visual refresh and judge flow      | asset ledger/hashes, responsive screenshots, accessibility and full demo smoke                                                      |
+|    12 | deployment and owner-approved testnet evidence      | deployment ID/commit, live 402, one payment, optional one attestation, independent receipt checks                                   |
+|    13 | final README, deck, videos, submission copy         | `claim-ledger.json`, `docs/final-demo-plan.md` acceptance audit, field map reconciliation, secret scan, clean checkout verification |
 
 Slices may be split further. Do not squash or rewrite the evidence history. Log
 every substantive commit and its tests in `docs/progress-during-buildathon.md`.
