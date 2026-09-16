@@ -3,6 +3,7 @@ import { z } from "zod";
 export const problemCodeSchema = z.enum([
   "invalid_json",
   "invalid_market_id",
+  "invalid_idempotency_key",
   "market_not_found",
   "unsupported_market_shape",
   "payment_required",
@@ -59,6 +60,11 @@ export const problemRules = {
     action: "fix_request_without_payment",
     paymentStates: ["not_present"],
   },
+  invalid_idempotency_key: {
+    status: 400,
+    action: "fix_request_without_payment",
+    paymentStates: ["not_present"],
+  },
   market_not_found: {
     status: 404,
     action: "stop",
@@ -87,7 +93,7 @@ export const problemRules = {
   purchase_in_progress: {
     status: 409,
     action: "wait_then_retry_same_purchase",
-    paymentStates: ["verified_unsettled"],
+    paymentStates: ["unverified", "verified_unsettled"],
   },
   source_unavailable: {
     status: 503,
@@ -112,7 +118,7 @@ export const problemRules = {
   replay_store_unavailable: {
     status: 503,
     action: "retry_same_purchase",
-    paymentStates: ["unverified"],
+    paymentStates: ["unverified", "verified_unsettled", "unknown"],
   },
   settlement_failed_unconsumed: {
     status: 502,

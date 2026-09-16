@@ -245,25 +245,26 @@ appropriate. A machine client follows `action`, never guesses from the prose.
 Exact facilitator error strings remain internal. The public mapping is small,
 stable, and testable:
 
-| Code | HTTP | Payment state | Client action | Settlement rule |
-| --- | ---: | --- | --- | --- |
-| `invalid_json` | 400 | `not_present` | `fix_request_without_payment` | Must occur before verification |
-| `invalid_market_id` | 422 | `not_present` | `fix_request_without_payment` | Must occur before verification |
-| `market_not_found` | 404 | `not_present` or `verified_unsettled` | `stop` | Never settle |
-| `unsupported_market_shape` | 422 | `not_present` or `verified_unsettled` | `stop` | Never silently coerce an unsupported outcome set; never settle |
-| `payment_required` | 402 | `not_present` | `present_payment_terms` | No authorization exists |
-| `payment_authorization_invalid` | 402 | `unverified` | `start_new_purchase_with_confirmation` | Invalid authorization must not settle |
-| `idempotency_conflict` | 409 | `unverified` or `verified_unsettled` | `stop` | Mismatched tuple must not reach provider/settlement |
-| `purchase_in_progress` | 409 | `verified_unsettled` | `wait_then_retry_same_purchase` | Same tuple only; no parallel work |
-| `source_unavailable` | 503 | `verified_unsettled` | `retry_same_purchase` | Never settle; optional `Retry-After` |
-| `provider_unavailable` | 502 | `verified_unsettled` | `retry_same_purchase` | Never settle |
-| `provider_timeout` | 504 | `verified_unsettled` | `retry_same_purchase` | Never settle |
-| `provider_invalid_output` | 502 | `verified_unsettled` | `retry_same_purchase` | Never settle |
-| `replay_store_unavailable` | 503 | `unverified` | `retry_same_purchase` | Fail closed before provider/settlement |
-| `settlement_failed_unconsumed` | 502 | `verified_unsettled` | `retry_same_purchase` | Emit only after authoritative evidence proves the authorization was not consumed |
-| `settlement_outcome_unknown` | 503 | `unknown` | `check_settlement_before_new_purchase` | Reconcile before any new payment |
-| `stored_receipt_invalid` | 500 | `unknown` | `check_settlement_before_new_purchase` | Never synthesize success |
-| `internal_error` | 500 | state-specific, never guessed | `stop` | Fail closed and expose only opaque instance ID |
+| Code                            | HTTP | Payment state                         | Client action                          | Settlement rule                                                                                         |
+| ------------------------------- | ---: | ------------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `invalid_json`                  |  400 | `not_present`                         | `fix_request_without_payment`          | Must occur before verification                                                                          |
+| `invalid_market_id`             |  422 | `not_present`                         | `fix_request_without_payment`          | Must occur before verification                                                                          |
+| `invalid_idempotency_key`       |  400 | `not_present`                         | `fix_request_without_payment`          | Must occur before verification or payment presentation                                                  |
+| `market_not_found`              |  404 | `not_present` or `verified_unsettled` | `stop`                                 | Never settle                                                                                            |
+| `unsupported_market_shape`      |  422 | `not_present` or `verified_unsettled` | `stop`                                 | Never silently coerce an unsupported outcome set; never settle                                          |
+| `payment_required`              |  402 | `not_present`                         | `present_payment_terms`                | No authorization exists                                                                                 |
+| `payment_authorization_invalid` |  402 | `unverified`                          | `start_new_purchase_with_confirmation` | Invalid authorization must not settle                                                                   |
+| `idempotency_conflict`          |  409 | `unverified` or `verified_unsettled`  | `stop`                                 | Mismatched tuple must not reach provider/settlement                                                     |
+| `purchase_in_progress`          |  409 | `unverified` or `verified_unsettled`  | `wait_then_retry_same_purchase`        | Same tuple only; no parallel work; state depends on whether the first worker has completed verification |
+| `source_unavailable`            |  503 | `verified_unsettled`                  | `retry_same_purchase`                  | Never settle; optional `Retry-After`                                                                    |
+| `provider_unavailable`          |  502 | `verified_unsettled`                  | `retry_same_purchase`                  | Never settle                                                                                            |
+| `provider_timeout`              |  504 | `verified_unsettled`                  | `retry_same_purchase`                  | Never settle                                                                                            |
+| `provider_invalid_output`       |  502 | `verified_unsettled`                  | `retry_same_purchase`                  | Never settle                                                                                            |
+| `replay_store_unavailable`      |  503 | state-specific                        | `retry_same_purchase`                  | Fail closed; never start new provider or settlement work without durable replay state                   |
+| `settlement_failed_unconsumed`  |  502 | `verified_unsettled`                  | `retry_same_purchase`                  | Emit only after authoritative evidence proves the authorization was not consumed                        |
+| `settlement_outcome_unknown`    |  503 | `unknown`                             | `check_settlement_before_new_purchase` | Reconcile before any new payment                                                                        |
+| `stored_receipt_invalid`        |  500 | `unknown`                             | `check_settlement_before_new_purchase` | Never synthesize success                                                                                |
+| `internal_error`                |  500 | state-specific, never guessed         | `stop`                                 | Fail closed and expose only opaque instance ID                                                          |
 
 For a request failure discovered before payment verification, the server must
 not describe the authorization as verified. For a provider failure after valid
