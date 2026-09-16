@@ -1,7 +1,7 @@
 # Durable replay-store decision brief
 
-Status: **pre-event research only; no provider has been selected, provisioned,
-connected, or authorized.**
+Status: **Research refreshed Sep 16, 2026; no provider has been selected,
+provisioned, connected, or authorized.**
 
 Signal402's planned application idempotency requires one atomic state record
 shared across serverless instances. This brief compares the current practical
@@ -65,6 +65,32 @@ Evidence reviewed Sep 7, 2026:
 Prices, quotas, terms, region availability, and plan features are mutable.
 Reopen the exact provider and Vercel plan pages immediately before asking for
 approval. A free tier is not the same as an SLA or production guarantee.
+
+### Sep 16 approval-time revalidation
+
+The owner-review candidate remains **Neon Free on AWS Singapore
+(`ap-southeast-1`)**, using the primary over the GA HTTP serverless driver.
+The current official pages report:
+
+- Free is $0, requires no credit card, includes 100 CU-hours and 0.5 GB storage
+  per project, and provides a six-hour time-travel/restore window;
+- the JavaScript serverless driver is GA, supports one-shot and batched
+  non-interactive HTTP queries, and requires Node 19 or later; this repository
+  currently verifies with Node 24;
+- Neon exposes AWS Singapore, while the matching Vercel function region is
+  `sin1`; Vercel still defaults functions to `iad1`, so changing compute region
+  remains a separate deployment approval;
+- Neon documents TLS 1.2/1.3 in transit and AES-256 at rest. Its security
+  overview separately describes provider-level encrypted backup retention of
+  30 days; this is not the same as Signal402's proposed 24-hour-or-shorter
+  application TTL or the Free plan's six-hour restore window.
+
+If approved, the bounded local implementation will use a dedicated schema and
+least-privilege runtime role, environment variable
+`SIGNAL402_REPLAY_DATABASE_URL`, parameterized primary writes, and the existing
+fail-closed problem mapping. Provisioning, linking Vercel, applying a remote
+migration, setting any secret, changing the Vercel region, and deploying remain
+separate confirmations.
 
 ## Recommended bounded design: Neon Postgres
 
