@@ -1,8 +1,9 @@
 # Signal402 in-window implementation map
 
-Status: **Execution in progress. Slices 0-6 are complete in local commits; no
-post-Sep 7 commit is public or deployed. Slice 7 remains blocked on the explicit
-durable-store approval gate below.**
+Status: **Execution in progress. Slices 0-6 are public; the local Slice 7
+adapter and migration are implemented but not connected or applied. Remote
+database tests, secrets, region changes, and deployment remain explicitly
+owner-gated.**
 
 This map turns the Buildathon specifications into small, reviewable commit
 slices. It is intentionally file-specific so the official-window work can start

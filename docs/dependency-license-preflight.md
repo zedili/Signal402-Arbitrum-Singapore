@@ -29,6 +29,18 @@ not to the final Linux deployment artifact.
 
 ## Items requiring in-window action
 
+### Neon serverless driver
+
+- Slice 7 pins `@neondatabase/serverless@1.1.0` exactly for the owner-approved
+  local Postgres adapter work.
+- The package declares MIT, requires Node 19 or later, and the locked registry
+  integrity is recorded in `front-end/pnpm-lock.yaml`; Signal402 currently
+  verifies on Node 24 locally and Node 22 in CI.
+- The production dependency audit reports no known vulnerability after the
+  addition. The driver is not yet connected to an account, database, secret,
+  migration target, or deployment.
+- Preserve its MIT notice in the final third-party notice artifact.
+
 ### `typeit`
 
 - `typeit@8.8.7` is a direct production dependency and declares GPL-3.0.

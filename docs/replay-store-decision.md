@@ -1,7 +1,8 @@
 # Durable replay-store decision brief
 
-Status: **Research refreshed Sep 16, 2026; no provider has been selected,
-provisioned, connected, or authorized.**
+Status: **Neon selected Sep 17, 2026 for local adapter/migration work only. No
+provider account, project, database, secret, remote migration, Vercel link,
+region change, or deployment has been authorized or created.**
 
 Signal402's planned application idempotency requires one atomic state record
 shared across serverless instances. This brief compares the current practical
@@ -85,12 +86,31 @@ The current official pages report:
   30 days; this is not the same as Signal402's proposed 24-hour-or-shorter
   application TTL or the Free plan's six-hour restore window.
 
-If approved, the bounded local implementation will use a dedicated schema and
+The bounded local implementation uses a dedicated schema and
 least-privilege runtime role, environment variable
 `SIGNAL402_REPLAY_DATABASE_URL`, parameterized primary writes, and the existing
 fail-closed problem mapping. Provisioning, linking Vercel, applying a remote
 migration, setting any secret, changing the Vercel region, and deploying remain
 separate confirmations.
+
+### Sep 17 local implementation result
+
+- Pinned `@neondatabase/serverless@1.1.0` after MIT, Node-engine, integrity,
+  and production-vulnerability checks.
+- Added a driver wrapper that rejects a missing or malformed
+  `SIGNAL402_REPLAY_DATABASE_URL` without logging it.
+- Added a parameterized durable adapter for atomic claim, consistent read, and
+  compare-and-set transition operations. Persisted rows are validated again on
+  read, including the exact response SHA-256 and complete settlement tuple.
+- Added a reviewed migration with 32-byte constraints, a unique credential
+  digest, state/payload constraints, expiry index, deterministic transaction
+  advisory locks for both identities, and public-privilege revocation.
+- Seventeen local assertions cover parameter binding, row validation, corrupt
+  bytes, conflict mapping, 16-way claim concurrency, compare-and-set races,
+  expiry release, durable-adapter production acceptance, and static migration
+  safety. No local Postgres runtime was available, so executing the migration
+  and proving database-level atomicity remain part of the separately approved
+  remote test gate.
 
 ## Recommended bounded design: Neon Postgres
 
